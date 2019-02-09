@@ -230,6 +230,7 @@
 					};
 				this.move = function(xChange,yChange)
 				{
+					//console.log("xChange = "+xChange+", yChange = "+yChange);
 					this.centre.x += xChange;
 					this.centre.y += yChange;
 					this.configurePoints();
@@ -300,7 +301,7 @@
 				{
 						if (this.hexes.length == 0)
 						{
-							this.hexes[0] = new Hex(point, this.radius, type);
+							this.hexes[0] = new Hex(new Point(point.x,point.y), this.radius, type);
 						}
 						else
 						{
@@ -778,7 +779,7 @@
 				
 				blueCtx.canvas.addEventListener('mousedown',function(event)
 				{
-					console.log("mousedown");
+					//console.log("mousedown");
 					moving = true;
 					previousMouseX = event.clientX- blueCtx.canvas.offsetLeft;
 					previousMouseY = event.clientY- blueCtx.canvas.offsetTop;
@@ -806,12 +807,12 @@
 				window.addEventListener('keydown',function(event)
 				{
 					shiftDown = event.shiftKey;
-					console.log("key down: "+shiftDown+" event.shiftKey: "+event.shiftKey);
+					//console.log("key down: "+shiftDown+" event.shiftKey: "+event.shiftKey);
 				});
 				window.addEventListener('keyup',function(event)
 				{
 					shiftDown = event.shiftKey;
-					console.log("key up: "+shiftDown);
+					//console.log("key up: "+shiftDown);
 				});
 				
 				document.getElementById('allotButton').onclick=function()
