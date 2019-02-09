@@ -276,10 +276,7 @@
 				};
 				this.canHoldRedToken = function()
 				{
-					get
-					{
-						return ((this.northEastHex==null|| !this.northEastHex.needsToken || this.northEastHex.tokenNumber!=6&& this.northEastHex.tokenNumber != 8)&& (this.northWestHex == null || !this.northWestHex.needsToken || this.northWestHex.tokenNumber != 6 && this.northWestHex.tokenNumber != 8)&& (EastHex == null || !this.eastHex.needsToken || this.eastHex.tokenNumber != 6 && this.eastHex.tokenNumber != 8)&& (this.westHex == null || !this.westHex.needsToken || this.westHex.tokenNumber != 6 && this.westHex.tokenNumber != 8)&& (this.southEastHex == null || !this.southEastHex.needsToken || this.southEastHex.tokenNumber != 6 && this.southEastHex.tokenNumber != 8)&& (this.southWestHex == null || !this.southWestHex.needsToken || this.southWestHex.tokenNumber != 6 && this.southWestHex.tokenNumber != 8));
-					}
+					return ((this.northEastHex==null|| !this.northEastHex.needsToken || this.northEastHex.tokenNumber!=6&& this.northEastHex.tokenNumber != 8)&& (this.northWestHex == null || !this.northWestHex.needsToken || this.northWestHex.tokenNumber != 6 && this.northWestHex.tokenNumber != 8)&& (this.eastHex == null || !this.eastHex.needsToken || this.eastHex.tokenNumber != 6 && this.eastHex.tokenNumber != 8)&& (this.westHex == null || !this.westHex.needsToken || this.westHex.tokenNumber != 6 && this.westHex.tokenNumber != 8)&& (this.southEastHex == null || !this.southEastHex.needsToken || this.southEastHex.tokenNumber != 6 && this.southEastHex.tokenNumber != 8)&& (this.southWestHex == null || !this.southWestHex.needsToken || this.southWestHex.tokenNumber != 6 && this.southWestHex.tokenNumber != 8));
 				};
 				this.setType = function(type)
 				{
@@ -629,7 +626,7 @@
 							else if (roll <= (rollingCount += token6s))
 							{
 								let firstUntokened = hexTreeOutcome.firstUntokened();
-								if (firstUntokened.canHoldRedToken)
+								if (firstUntokened.canHoldRedToken())
 								{
 									firstUntokened.tokenNumber = 6;
 									token6s--;
@@ -645,7 +642,7 @@
 							else if (roll <= (rollingCount += token8s))
 							{
 								let firstUntokened = hexTreeOutcome.firstUntokened();
-								if (firstUntokened.canHoldRedToken)
+								if (firstUntokened.canHoldRedToken())
 								{
 									firstUntokened.tokenNumber = 8;
 									token8s--;
