@@ -13,7 +13,18 @@
 			}
 			function hideHelp()
 			{
-				document.getElementById("guideDiv").innerHTML="";
+				var helpButton = document.getElementById("helpButton");
+				if (helpButton.innerHTML=="Show Help")
+				{
+					document.getElementById("guideDiv").style="display: block;";
+					helpButton.innerHTML="Hide Help";
+				}
+				else
+				{
+					document.getElementById("guideDiv").style="display: none;";
+					helpButton.innerHTML="Show Help";
+				}
+				
 			}
 
 			function Hex(centre,radius,type)
@@ -2510,13 +2521,13 @@
 		</script>
 	</head>
 	<body>
-	<div id="guideDiv">
+	<div id="guideDiv" style="display: none;">
 		<h3>Guide</h3><br>
 		<p>Premise: The idea of this tool is that you can randomly generate tiles and their number tokens according to a set format for a game of Catan.</p>
 		<p>If all you want is a basic game or the extension, simply select one of those maps at the top of the dropdown box near the bottom of the left hand side of the page. Once you've done that, click on the allot tiles button and you should have a randomly set board on the right side of the screen. You can do the exact same with all the other maps too.</p>
 		<p>If you'd like to create your own map, just select the kind of tile you want to place with the radio buttons on the left and click on the left hand map. For all tiles thereafter, they will need to be joined to the current board, so click beside any tile to add another. If you want to change a tile, click it again with a different tile. The 'random' tile will act just like the ones you've seen in the examples. Just be sure to provide enough in the tile supply to fill those random ones with. Also be sure to supply the kind of tokens you want to fill those tiles with, if they need tokens.</p>
-		<p>If your map becomes considerably large, you can move around by holding down shift and dragging with the mouse at the same time.</p>
-		<button type="button" onclick="hideHelp()">Hide this Information</button>
+		<p>If your map becomes considerably large, you can move around by holding down shift and dragging with the mouse at the same time. Changing the scale (before you start a new map) will also make the tiles larger or smaller.</p>
+		
 	</div>
 	<div id="mainGridDiv" style="display: grid; grid-template-columns: 200px auto auto;">
 		<div id="controlsDiv">
@@ -2632,7 +2643,8 @@
 				<option value="12">[48]</option>
 				<option value="13">[37]</option>
 			</select><br>
-			<button type="button" id="resetButton">Reset</button>
+			<button type="button" id="resetButton">Reset</button><br>
+			<button type="button" onclick="hideHelp()" id="helpButton">Show Help</button>
 		</div>
 		<div id="blueprintDiv">
 			<canvas id="blueCanvas" width="500" height="1000" style="border: 5px solid blue;"></canvas>
