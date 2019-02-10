@@ -505,8 +505,9 @@
 				
 				
 			}
-			var hexTreeBlueprint = new HexList(20);
-			var hexTreeOutcome = new HexList(20);
+			var globalRadius = 20;
+			var hexTreeBlueprint = new HexList(globalRadius);
+			var hexTreeOutcome = new HexList(globalRadius);
 			var moving=false;
 			var shiftDown=false;
 			var previousMouseX=-1;
@@ -549,6 +550,13 @@
 					blueCtx.fillRect(0,0,blueCtx.canvas.width,blueCtx.canvas.height);
 				};
 				resetCanvases();
+				document.getElementById("resetButton").onclick=function()
+				{
+					globalRadius = document.getElementById("scaleNum").value;
+					hexTreeBlueprint = new HexList(globalRadius);
+					hexTreeOutcome = new HexList(globalRadius);
+					resetCanvases();
+				};
 				function placeNumbers()
 				{
 					hexTreeOutcome.resetNumbers();
@@ -699,8 +707,11 @@
 				{
 					if (!shiftDown)
 					{
-						let mX = event.clientX - blueCtx.canvas.offsetLeft;
-						let mY = event.clientY - blueCtx.canvas.offsetTop;
+						//globalRadius = document.getElementById("scaleNum").value;
+						//let mX = event.clientX - blueCtx.canvas.offsetLeft;
+						//let mY = event.clientY - blueCtx.canvas.offsetTop;
+						let mX = event.pageX - blueCtx.canvas.offsetLeft;
+						let mY = event.pageY - blueCtx.canvas.offsetTop;
 							if (document.getElementById('placeCou').checked)
 							{
 								hexTreeBlueprint.add(new Point(mX, mY), "cou");
@@ -1019,32 +1030,34 @@
 			});
 			function loadTemplate()
 			{
+				globalRadius = document.getElementById("scaleNum").value;
+				let factor = globalRadius/20;
 				resetCanvases();
 				switch (parseInt(document.getElementById('templateSelection').selectedIndex))
 				{
 					case 0:
 						//base
 						{ 
-							hexTreeBlueprint = new HexList(20);
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "emp");
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "emp");
-							hexTreeBlueprint.add(new Point(232, 300), "emp");
-							hexTreeBlueprint.add(new Point(249, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "emp");
-							hexTreeBlueprint.add(new Point(232, 360), "emp");
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "emp");
+							hexTreeBlueprint = new HexList(globalRadius);
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "emp");
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 							
 							document.getElementById('numSea').value = 0;
@@ -1077,44 +1090,44 @@
 						//base extension
 						
 						{ 
-						hexTreeBlueprint = new HexList(20);
+						hexTreeBlueprint = new HexList(globalRadius);
 
-						hexTreeBlueprint.add(new Point(164, 240), "emp");
-						hexTreeBlueprint.add(new Point(198, 240), "emp");
-						hexTreeBlueprint.add(new Point(232, 240), "emp");
+						hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+						hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+						hexTreeBlueprint.add(new Point(232*factor, 240*factor), "emp");
 
-						hexTreeBlueprint.add(new Point(137, 270), "emp");
-						hexTreeBlueprint.add(new Point(171, 270), "emp");
-						hexTreeBlueprint.add(new Point(215, 270), "emp");
-						hexTreeBlueprint.add(new Point(249, 270), "emp");
+						hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+						hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+						hexTreeBlueprint.add(new Point(215*factor, 270*factor), "emp");
+						hexTreeBlueprint.add(new Point(249*factor, 270*factor), "emp");
 
-						hexTreeBlueprint.add(new Point(130, 300), "emp");
-						hexTreeBlueprint.add(new Point(164, 300), "emp");
-						hexTreeBlueprint.add(new Point(198, 300), "emp");
-						hexTreeBlueprint.add(new Point(232, 300), "emp");
-						hexTreeBlueprint.add(new Point(266, 300), "emp");
+						hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(232*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(266*factor, 300*factor), "emp");
 
-						hexTreeBlueprint.add(new Point(249, 330), "emp");
-						hexTreeBlueprint.add(new Point(215, 330), "emp");
-						hexTreeBlueprint.add(new Point(171, 330), "emp");
-						hexTreeBlueprint.add(new Point(137, 330), "emp");
-						hexTreeBlueprint.add(new Point(103, 330), "emp");
-						hexTreeBlueprint.add(new Point(283, 330), "emp");
+						hexTreeBlueprint.add(new Point(249*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(283*factor, 330*factor), "emp");
 
-						hexTreeBlueprint.add(new Point(130, 360), "emp");
-						hexTreeBlueprint.add(new Point(164, 360), "emp");
-						hexTreeBlueprint.add(new Point(198, 360), "emp");
-						hexTreeBlueprint.add(new Point(232, 360), "emp");
-						hexTreeBlueprint.add(new Point(266, 360), "emp");
+						hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(232*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(266*factor, 360*factor), "emp");
 
-						hexTreeBlueprint.add(new Point(137, 390), "emp");
-						hexTreeBlueprint.add(new Point(171, 390), "emp");
-						hexTreeBlueprint.add(new Point(215, 390), "emp");
-						hexTreeBlueprint.add(new Point(249, 390), "emp");
+						hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+						hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+						hexTreeBlueprint.add(new Point(215*factor, 390*factor), "emp");
+						hexTreeBlueprint.add(new Point(249*factor, 390*factor), "emp");
 
-						hexTreeBlueprint.add(new Point(164, 420), "emp");
-						hexTreeBlueprint.add(new Point(198, 420), "emp");
-						hexTreeBlueprint.add(new Point(232, 420), "emp");
+						hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+						hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+						hexTreeBlueprint.add(new Point(232*factor, 420*factor), "emp");
 
 						hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -1149,120 +1162,120 @@
 					case 2:
 						//102
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 							
-							hexTreeBlueprint.add(new Point(198, 180), "emp");
-							hexTreeBlueprint.add(new Point(232, 180), "emp");
-							hexTreeBlueprint.add(new Point(266, 180), "emp");
-							hexTreeBlueprint.add(new Point(300, 180), "emp");
-							hexTreeBlueprint.add(new Point(334, 180), "emp");
-							hexTreeBlueprint.add(new Point(368, 180), "emp");
-							hexTreeBlueprint.add(new Point(402, 180), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 180*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 180*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 180*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 180*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 180*factor), "emp");
+							hexTreeBlueprint.add(new Point(368*factor, 180*factor), "emp");
+							hexTreeBlueprint.add(new Point(402*factor, 180*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(171, 210), "emp");
-							hexTreeBlueprint.add(new Point(215, 210), "emp");
-							hexTreeBlueprint.add(new Point(249, 210), "emp");
-							hexTreeBlueprint.add(new Point(283, 210), "emp");
-							hexTreeBlueprint.add(new Point(317, 210), "emp");
-							hexTreeBlueprint.add(new Point(351, 210), "emp");
-							hexTreeBlueprint.add(new Point(385, 210), "emp");
-							hexTreeBlueprint.add(new Point(419, 210), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(351*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(385*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(419*factor, 210*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "emp");
-							hexTreeBlueprint.add(new Point(266, 240), "emp");
-							hexTreeBlueprint.add(new Point(300, 240), "emp");
-							hexTreeBlueprint.add(new Point(334, 240), "emp");
-							hexTreeBlueprint.add(new Point(368, 240), "emp");
-							hexTreeBlueprint.add(new Point(402, 240), "emp");
-							hexTreeBlueprint.add(new Point(436, 240), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(368*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(402*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(436*factor, 240*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "emp");
-							hexTreeBlueprint.add(new Point(249, 270), "emp");
-							hexTreeBlueprint.add(new Point(283, 270), "emp");
-							hexTreeBlueprint.add(new Point(317, 270), "emp");
-							hexTreeBlueprint.add(new Point(351, 270), "emp");
-							hexTreeBlueprint.add(new Point(385, 270), "emp");
-							hexTreeBlueprint.add(new Point(419, 270), "emp");
-							hexTreeBlueprint.add(new Point(453, 270), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(385*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(419*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(453*factor, 270*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "emp");
-							hexTreeBlueprint.add(new Point(232, 300), "emp");
-							hexTreeBlueprint.add(new Point(266, 300), "emp");
-							hexTreeBlueprint.add(new Point(300, 300), "emp");
-							hexTreeBlueprint.add(new Point(334, 300), "emp");
-							hexTreeBlueprint.add(new Point(368, 300), "emp");
-							hexTreeBlueprint.add(new Point(402, 300), "emp");
-							hexTreeBlueprint.add(new Point(436, 300), "emp");
-							hexTreeBlueprint.add(new Point(470, 300), "emp");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(402*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(436*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(470*factor, 300*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "emp");
-							hexTreeBlueprint.add(new Point(249, 330), "emp");
-							hexTreeBlueprint.add(new Point(283, 330), "emp");
-							hexTreeBlueprint.add(new Point(317, 330), "emp");
-							hexTreeBlueprint.add(new Point(351, 330), "emp");
-							hexTreeBlueprint.add(new Point(385, 330), "emp");
-							hexTreeBlueprint.add(new Point(419, 330), "emp");
-							hexTreeBlueprint.add(new Point(453, 330), "emp");
-							hexTreeBlueprint.add(new Point(487, 330), "emp");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(385*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(419*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(453*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(487*factor, 330*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "emp");
-							hexTreeBlueprint.add(new Point(232, 360), "emp");
-							hexTreeBlueprint.add(new Point(266, 360), "emp");
-							hexTreeBlueprint.add(new Point(300, 360), "emp");
-							hexTreeBlueprint.add(new Point(334, 360), "emp");
-							hexTreeBlueprint.add(new Point(368, 360), "emp");
-							hexTreeBlueprint.add(new Point(402, 360), "emp");
-							hexTreeBlueprint.add(new Point(436, 360), "emp");
-							hexTreeBlueprint.add(new Point(470, 360), "emp");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(368*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(402*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(436*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(470*factor, 360*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "emp");
-							hexTreeBlueprint.add(new Point(249, 390), "emp");
-							hexTreeBlueprint.add(new Point(283, 390), "emp");
-							hexTreeBlueprint.add(new Point(317, 390), "emp");
-							hexTreeBlueprint.add(new Point(351, 390), "emp");
-							hexTreeBlueprint.add(new Point(385, 390), "emp");
-							hexTreeBlueprint.add(new Point(419, 390), "emp");
-							hexTreeBlueprint.add(new Point(453, 390), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(351*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(385*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(419*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(453*factor, 390*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(164, 420), "emp");
-							hexTreeBlueprint.add(new Point(198, 420), "emp");
-							hexTreeBlueprint.add(new Point(232, 420), "emp");
-							hexTreeBlueprint.add(new Point(266, 420), "emp");
-							hexTreeBlueprint.add(new Point(300, 420), "emp");
-							hexTreeBlueprint.add(new Point(334, 420), "emp");
-							hexTreeBlueprint.add(new Point(368, 420), "emp");
-							hexTreeBlueprint.add(new Point(402, 420), "emp");
-							hexTreeBlueprint.add(new Point(436, 420), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(368*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(402*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(436*factor, 420*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(171, 450), "emp");
-							hexTreeBlueprint.add(new Point(215, 450), "emp");
-							hexTreeBlueprint.add(new Point(249, 450), "emp");
-							hexTreeBlueprint.add(new Point(283, 450), "emp");
-							hexTreeBlueprint.add(new Point(317, 450), "emp");
-							hexTreeBlueprint.add(new Point(351, 450), "emp");
-							hexTreeBlueprint.add(new Point(385, 450), "emp");
-							hexTreeBlueprint.add(new Point(419, 450), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(351*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(385*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(419*factor, 450*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(198, 480), "emp");
-							hexTreeBlueprint.add(new Point(232, 480), "emp");
-							hexTreeBlueprint.add(new Point(266, 480), "emp");
-							hexTreeBlueprint.add(new Point(300, 480), "emp");
-							hexTreeBlueprint.add(new Point(334, 480), "emp");
-							hexTreeBlueprint.add(new Point(368, 480), "emp");
-							hexTreeBlueprint.add(new Point(402, 480), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 480*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 480*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 480*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 480*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 480*factor), "emp");
+							hexTreeBlueprint.add(new Point(368*factor, 480*factor), "emp");
+							hexTreeBlueprint.add(new Point(402*factor, 480*factor), "emp");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -1295,65 +1308,65 @@
 					case 3:
 						//E&P 1
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "sea");
-							hexTreeBlueprint.add(new Point(266, 240), "sea");
-							hexTreeBlueprint.add(new Point(300, 240), "gre");
-							hexTreeBlueprint.add(new Point(334, 240), "gre");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "sea");
-							hexTreeBlueprint.add(new Point(249, 270), "sea");
-							hexTreeBlueprint.add(new Point(283, 270), "gre");
-							hexTreeBlueprint.add(new Point(317, 270), "gre");
-							hexTreeBlueprint.add(new Point(351, 270), "gre");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "sea");
-							hexTreeBlueprint.add(new Point(232, 300), "sea");
-							hexTreeBlueprint.add(new Point(266, 300), "gre");
-							hexTreeBlueprint.add(new Point(300, 300), "sea");
-							hexTreeBlueprint.add(new Point(334, 300), "gre");
-							hexTreeBlueprint.add(new Point(368, 300), "gre");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "sea");
-							hexTreeBlueprint.add(new Point(249, 330), "sea");
-							hexTreeBlueprint.add(new Point(283, 330), "sea");
-							hexTreeBlueprint.add(new Point(317, 330), "sea");
-							hexTreeBlueprint.add(new Point(351, 330), "sea");
-							hexTreeBlueprint.add(new Point(385, 330), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 330*factor), "sea");
 
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "sea");
-							hexTreeBlueprint.add(new Point(232, 360), "sea");
-							hexTreeBlueprint.add(new Point(266, 360), "ora");
-							hexTreeBlueprint.add(new Point(300, 360), "sea");
-							hexTreeBlueprint.add(new Point(334, 360), "ora");
-							hexTreeBlueprint.add(new Point(368, 360), "ora");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(368*factor, 360*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "sea");
-							hexTreeBlueprint.add(new Point(249, 390), "sea");
-							hexTreeBlueprint.add(new Point(283, 390), "ora");
-							hexTreeBlueprint.add(new Point(317, 390), "ora");
-							hexTreeBlueprint.add(new Point(351, 390), "ora");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 390*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(164, 420), "emp");
-							hexTreeBlueprint.add(new Point(198, 420), "emp");
-							hexTreeBlueprint.add(new Point(232, 420), "sea");
-							hexTreeBlueprint.add(new Point(266, 420), "sea");
-							hexTreeBlueprint.add(new Point(300, 420), "ora");
-							hexTreeBlueprint.add(new Point(334, 420), "ora");
+							hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 420*factor), "ora");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -1387,72 +1400,72 @@
 					case 4:
 						//E&P 2
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "sea");
-							hexTreeBlueprint.add(new Point(266, 240), "sea");
-							hexTreeBlueprint.add(new Point(300, 240), "gre");
-							hexTreeBlueprint.add(new Point(334, 240), "gre");
-							hexTreeBlueprint.add(new Point(368, 240), "gre");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(368*factor, 240*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "sea");
-							hexTreeBlueprint.add(new Point(249, 270), "sea");
-							hexTreeBlueprint.add(new Point(283, 270), "gre");
-							hexTreeBlueprint.add(new Point(317, 270), "gre");
-							hexTreeBlueprint.add(new Point(351, 270), "gre");
-							hexTreeBlueprint.add(new Point(385, 270), "gre");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(385*factor, 270*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "sea");
-							hexTreeBlueprint.add(new Point(232, 300), "sea");
-							hexTreeBlueprint.add(new Point(266, 300), "gre");
-							hexTreeBlueprint.add(new Point(300, 300), "gre");
-							hexTreeBlueprint.add(new Point(334, 300), "sea");
-							hexTreeBlueprint.add(new Point(368, 300), "gre");
-							hexTreeBlueprint.add(new Point(402, 300), "gre");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 300*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "sea");
-							hexTreeBlueprint.add(new Point(249, 330), "sea");
-							hexTreeBlueprint.add(new Point(283, 330), "sea");
-							hexTreeBlueprint.add(new Point(317, 330), "sea");
-							hexTreeBlueprint.add(new Point(351, 330), "sea");
-							hexTreeBlueprint.add(new Point(385, 330), "sea");
-							hexTreeBlueprint.add(new Point(419, 330), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(419*factor, 330*factor), "sea");
 
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "sea");
-							hexTreeBlueprint.add(new Point(232, 360), "sea");
-							hexTreeBlueprint.add(new Point(266, 360), "ora");
-							hexTreeBlueprint.add(new Point(300, 360), "ora");
-							hexTreeBlueprint.add(new Point(334, 360), "sea");
-							hexTreeBlueprint.add(new Point(368, 360), "ora");
-							hexTreeBlueprint.add(new Point(402, 360), "ora");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 360*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "sea");
-							hexTreeBlueprint.add(new Point(249, 390), "sea");
-							hexTreeBlueprint.add(new Point(283, 390), "ora");
-							hexTreeBlueprint.add(new Point(317, 390), "ora");
-							hexTreeBlueprint.add(new Point(351, 390), "ora");
-							hexTreeBlueprint.add(new Point(385, 390), "ora");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(385*factor, 390*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(164, 420), "emp");
-							hexTreeBlueprint.add(new Point(198, 420), "emp");
-							hexTreeBlueprint.add(new Point(232, 420), "sea");
-							hexTreeBlueprint.add(new Point(266, 420), "sea");
-							hexTreeBlueprint.add(new Point(300, 420), "ora");
-							hexTreeBlueprint.add(new Point(334, 420), "ora");
-							hexTreeBlueprint.add(new Point(368, 420), "ora");
+							hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(368*factor, 420*factor), "ora");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -1486,72 +1499,72 @@
 					case 5:
 						//E&P 3
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "sea");
-							hexTreeBlueprint.add(new Point(266, 240), "sea");
-							hexTreeBlueprint.add(new Point(300, 240), "gre");
-							hexTreeBlueprint.add(new Point(334, 240), "gre");
-							hexTreeBlueprint.add(new Point(368, 240), "gre");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(368*factor, 240*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "sea");
-							hexTreeBlueprint.add(new Point(249, 270), "sea");
-							hexTreeBlueprint.add(new Point(283, 270), "gre");
-							hexTreeBlueprint.add(new Point(317, 270), "gre");
-							hexTreeBlueprint.add(new Point(351, 270), "gre");
-							hexTreeBlueprint.add(new Point(385, 270), "gre");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(385*factor, 270*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "sea");
-							hexTreeBlueprint.add(new Point(232, 300), "sea");
-							hexTreeBlueprint.add(new Point(266, 300), "gre");
-							hexTreeBlueprint.add(new Point(300, 300), "gre");
-							hexTreeBlueprint.add(new Point(334, 300), "sea");
-							hexTreeBlueprint.add(new Point(368, 300), "gre");
-							hexTreeBlueprint.add(new Point(402, 300), "gre");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 300*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "cou");
-							hexTreeBlueprint.add(new Point(249, 330), "sea");
-							hexTreeBlueprint.add(new Point(283, 330), "sea");
-							hexTreeBlueprint.add(new Point(317, 330), "sea");
-							hexTreeBlueprint.add(new Point(351, 330), "sea");
-							hexTreeBlueprint.add(new Point(385, 330), "sea");
-							hexTreeBlueprint.add(new Point(419, 330), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "cou");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(419*factor, 330*factor), "sea");
 
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "sea");
-							hexTreeBlueprint.add(new Point(232, 360), "sea");
-							hexTreeBlueprint.add(new Point(266, 360), "ora");
-							hexTreeBlueprint.add(new Point(300, 360), "ora");
-							hexTreeBlueprint.add(new Point(334, 360), "sea");
-							hexTreeBlueprint.add(new Point(368, 360), "ora");
-							hexTreeBlueprint.add(new Point(402, 360), "ora");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 360*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "sea");
-							hexTreeBlueprint.add(new Point(249, 390), "sea");
-							hexTreeBlueprint.add(new Point(283, 390), "ora");
-							hexTreeBlueprint.add(new Point(317, 390), "ora");
-							hexTreeBlueprint.add(new Point(351, 390), "ora");
-							hexTreeBlueprint.add(new Point(385, 390), "ora");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(385*factor, 390*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(164, 420), "emp");
-							hexTreeBlueprint.add(new Point(198, 420), "emp");
-							hexTreeBlueprint.add(new Point(232, 420), "sea");
-							hexTreeBlueprint.add(new Point(266, 420), "sea");
-							hexTreeBlueprint.add(new Point(300, 420), "ora");
-							hexTreeBlueprint.add(new Point(334, 420), "ora");
-							hexTreeBlueprint.add(new Point(368, 420), "ora");
+							hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(368*factor, 420*factor), "ora");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -1585,79 +1598,79 @@
 					case 6:
 						//E&P 4
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "sea");
-							hexTreeBlueprint.add(new Point(266, 240), "sea");
-							hexTreeBlueprint.add(new Point(300, 240), "gre");
-							hexTreeBlueprint.add(new Point(334, 240), "gre");
-							hexTreeBlueprint.add(new Point(368, 240), "gre");
-							hexTreeBlueprint.add(new Point(402, 240), "gre");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(368*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 240*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "sea");
-							hexTreeBlueprint.add(new Point(249, 270), "sea");
-							hexTreeBlueprint.add(new Point(283, 270), "gre");
-							hexTreeBlueprint.add(new Point(317, 270), "gre");
-							hexTreeBlueprint.add(new Point(351, 270), "gre");
-							hexTreeBlueprint.add(new Point(385, 270), "gre");
-							hexTreeBlueprint.add(new Point(419, 270), "gre");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(385*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(419*factor, 270*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "sea");
-							hexTreeBlueprint.add(new Point(232, 300), "sea");
-							hexTreeBlueprint.add(new Point(266, 300), "gre");
-							hexTreeBlueprint.add(new Point(300, 300), "gre");
-							hexTreeBlueprint.add(new Point(334, 300), "sea");
-							hexTreeBlueprint.add(new Point(368, 300), "gre");
-							hexTreeBlueprint.add(new Point(402, 300), "sea");
-							hexTreeBlueprint.add(new Point(436, 300), "gre");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(436*factor, 300*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "cou");
-							hexTreeBlueprint.add(new Point(249, 330), "sea");
-							hexTreeBlueprint.add(new Point(283, 330), "sea");
-							hexTreeBlueprint.add(new Point(317, 330), "sea");
-							hexTreeBlueprint.add(new Point(351, 330), "sea");
-							hexTreeBlueprint.add(new Point(385, 330), "sea");
-							hexTreeBlueprint.add(new Point(419, 330), "sea");
-							hexTreeBlueprint.add(new Point(453, 330), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "cou");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(419*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(453*factor, 330*factor), "sea");
 
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "sea");
-							hexTreeBlueprint.add(new Point(232, 360), "sea");
-							hexTreeBlueprint.add(new Point(266, 360), "ora");
-							hexTreeBlueprint.add(new Point(300, 360), "ora");
-							hexTreeBlueprint.add(new Point(334, 360), "sea");
-							hexTreeBlueprint.add(new Point(368, 360), "ora");
-							hexTreeBlueprint.add(new Point(402, 360), "sea");
-							hexTreeBlueprint.add(new Point(436, 360), "ora");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(436*factor, 360*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "sea");
-							hexTreeBlueprint.add(new Point(249, 390), "sea");
-							hexTreeBlueprint.add(new Point(283, 390), "ora");
-							hexTreeBlueprint.add(new Point(317, 390), "ora");
-							hexTreeBlueprint.add(new Point(351, 390), "ora");
-							hexTreeBlueprint.add(new Point(385, 390), "ora");
-							hexTreeBlueprint.add(new Point(419, 390), "ora");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(385*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(419*factor, 390*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(164, 420), "emp");
-							hexTreeBlueprint.add(new Point(198, 420), "emp");
-							hexTreeBlueprint.add(new Point(232, 420), "sea");
-							hexTreeBlueprint.add(new Point(266, 420), "sea");
-							hexTreeBlueprint.add(new Point(300, 420), "ora");
-							hexTreeBlueprint.add(new Point(334, 420), "ora");
-							hexTreeBlueprint.add(new Point(368, 420), "ora");
-							hexTreeBlueprint.add(new Point(402, 420), "ora");
+							hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(368*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 420*factor), "ora");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -1690,86 +1703,86 @@
 					case 7:
 						//E&P 5
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "sea");
-							hexTreeBlueprint.add(new Point(266, 240), "sea");
-							hexTreeBlueprint.add(new Point(300, 240), "gre");
-							hexTreeBlueprint.add(new Point(334, 240), "gre");
-							hexTreeBlueprint.add(new Point(368, 240), "gre");
-							hexTreeBlueprint.add(new Point(402, 240), "gre");
-							hexTreeBlueprint.add(new Point(436, 240), "gre");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(368*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(436*factor, 240*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "sea");
-							hexTreeBlueprint.add(new Point(249, 270), "sea");
-							hexTreeBlueprint.add(new Point(283, 270), "gre");
-							hexTreeBlueprint.add(new Point(317, 270), "gre");
-							hexTreeBlueprint.add(new Point(351, 270), "gre");
-							hexTreeBlueprint.add(new Point(385, 270), "gre");
-							hexTreeBlueprint.add(new Point(419, 270), "gre");
-							hexTreeBlueprint.add(new Point(453, 270), "gre");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(385*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(419*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(453*factor, 270*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "sea");
-							hexTreeBlueprint.add(new Point(232, 300), "sea");
-							hexTreeBlueprint.add(new Point(266, 300), "gre");
-							hexTreeBlueprint.add(new Point(300, 300), "gre");
-							hexTreeBlueprint.add(new Point(334, 300), "sea");
-							hexTreeBlueprint.add(new Point(368, 300), "gre");
-							hexTreeBlueprint.add(new Point(402, 300), "sea");
-							hexTreeBlueprint.add(new Point(436, 300), "gre");
-							hexTreeBlueprint.add(new Point(470, 300), "gre");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(436*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(470*factor, 300*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "cou");
-							hexTreeBlueprint.add(new Point(249, 330), "sea");
-							hexTreeBlueprint.add(new Point(283, 330), "sea");
-							hexTreeBlueprint.add(new Point(317, 330), "sea");
-							hexTreeBlueprint.add(new Point(351, 330), "sea");
-							hexTreeBlueprint.add(new Point(385, 330), "sea");
-							hexTreeBlueprint.add(new Point(419, 330), "sea");
-							hexTreeBlueprint.add(new Point(453, 330), "sea");
-							hexTreeBlueprint.add(new Point(487, 330), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "cou");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(419*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(453*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(487*factor, 330*factor), "sea");
 
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "sea");
-							hexTreeBlueprint.add(new Point(232, 360), "sea");
-							hexTreeBlueprint.add(new Point(266, 360), "ora");
-							hexTreeBlueprint.add(new Point(300, 360), "ora");
-							hexTreeBlueprint.add(new Point(334, 360), "sea");
-							hexTreeBlueprint.add(new Point(368, 360), "ora");
-							hexTreeBlueprint.add(new Point(402, 360), "sea");
-							hexTreeBlueprint.add(new Point(436, 360), "ora");
-							hexTreeBlueprint.add(new Point(470, 360), "ora");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(436*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(470*factor, 360*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "sea");
-							hexTreeBlueprint.add(new Point(249, 390), "sea");
-							hexTreeBlueprint.add(new Point(283, 390), "ora");
-							hexTreeBlueprint.add(new Point(317, 390), "ora");
-							hexTreeBlueprint.add(new Point(351, 390), "ora");
-							hexTreeBlueprint.add(new Point(385, 390), "ora");
-							hexTreeBlueprint.add(new Point(419, 390), "ora");
-							hexTreeBlueprint.add(new Point(453, 390), "ora");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(385*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(419*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(453*factor, 390*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(164, 420), "emp");
-							hexTreeBlueprint.add(new Point(198, 420), "emp");
-							hexTreeBlueprint.add(new Point(232, 420), "sea");
-							hexTreeBlueprint.add(new Point(266, 420), "sea");
-							hexTreeBlueprint.add(new Point(300, 420), "ora");
-							hexTreeBlueprint.add(new Point(334, 420), "ora");
-							hexTreeBlueprint.add(new Point(368, 420), "ora");
-							hexTreeBlueprint.add(new Point(402, 420), "ora");
-							hexTreeBlueprint.add(new Point(436, 420), "ora");
+							hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(368*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(436*factor, 420*factor), "ora");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -1803,95 +1816,95 @@
 					case 8:
 						//E&P 2 Extension
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 
-							hexTreeBlueprint.add(new Point(171, 210), "emp");
-							hexTreeBlueprint.add(new Point(215, 210), "emp");
-							hexTreeBlueprint.add(new Point(249, 210), "sea");
-							hexTreeBlueprint.add(new Point(283, 210), "sea");
-							hexTreeBlueprint.add(new Point(317, 210), "gre");
-							hexTreeBlueprint.add(new Point(351, 210), "sea");
-							hexTreeBlueprint.add(new Point(385, 210), "gre");
+							hexTreeBlueprint.add(new Point(171*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 210*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 210*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "sea");
-							hexTreeBlueprint.add(new Point(266, 240), "sea");
-							hexTreeBlueprint.add(new Point(300, 240), "gre");
-							hexTreeBlueprint.add(new Point(334, 240), "gre");
-							hexTreeBlueprint.add(new Point(368, 240), "gre");
-							hexTreeBlueprint.add(new Point(402, 240), "gre");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(368*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 240*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "sea");
-							hexTreeBlueprint.add(new Point(249, 270), "sea");
-							hexTreeBlueprint.add(new Point(283, 270), "gre");
-							hexTreeBlueprint.add(new Point(317, 270), "gre");
-							hexTreeBlueprint.add(new Point(351, 270), "gre");
-							hexTreeBlueprint.add(new Point(385, 270), "gre");
-							hexTreeBlueprint.add(new Point(419, 270), "gre");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(385*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(419*factor, 270*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "emp");
-							hexTreeBlueprint.add(new Point(232, 300), "sea");
-							hexTreeBlueprint.add(new Point(266, 300), "sea");
-							hexTreeBlueprint.add(new Point(300, 300), "gre");
-							hexTreeBlueprint.add(new Point(334, 300), "sea");
-							hexTreeBlueprint.add(new Point(368, 300), "gre");
-							hexTreeBlueprint.add(new Point(402, 300), "sea");
-							hexTreeBlueprint.add(new Point(436, 300), "gre");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(436*factor, 300*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "emp");
-							hexTreeBlueprint.add(new Point(249, 330), "sea");
-							hexTreeBlueprint.add(new Point(283, 330), "sea");
-							hexTreeBlueprint.add(new Point(317, 330), "sea");
-							hexTreeBlueprint.add(new Point(351, 330), "sea");
-							hexTreeBlueprint.add(new Point(385, 330), "sea");
-							hexTreeBlueprint.add(new Point(419, 330), "sea");
-							hexTreeBlueprint.add(new Point(453, 330), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(419*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(453*factor, 330*factor), "sea");
 
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "emp");
-							hexTreeBlueprint.add(new Point(232, 360), "sea");
-							hexTreeBlueprint.add(new Point(266, 360), "sea");
-							hexTreeBlueprint.add(new Point(300, 360), "ora");
-							hexTreeBlueprint.add(new Point(334, 360), "sea");
-							hexTreeBlueprint.add(new Point(368, 360), "ora");
-							hexTreeBlueprint.add(new Point(402, 360), "sea");
-							hexTreeBlueprint.add(new Point(436, 360), "ora");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(436*factor, 360*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "sea");
-							hexTreeBlueprint.add(new Point(249, 390), "sea");
-							hexTreeBlueprint.add(new Point(283, 390), "ora");
-							hexTreeBlueprint.add(new Point(317, 390), "ora");
-							hexTreeBlueprint.add(new Point(351, 390), "ora");
-							hexTreeBlueprint.add(new Point(385, 390), "ora");
-							hexTreeBlueprint.add(new Point(419, 390), "ora");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(385*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(419*factor, 390*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(164, 420), "emp");
-							hexTreeBlueprint.add(new Point(198, 420), "emp");
-							hexTreeBlueprint.add(new Point(232, 420), "sea");
-							hexTreeBlueprint.add(new Point(266, 420), "sea");
-							hexTreeBlueprint.add(new Point(300, 420), "ora");
-							hexTreeBlueprint.add(new Point(334, 420), "ora");
-							hexTreeBlueprint.add(new Point(368, 420), "ora");
-							hexTreeBlueprint.add(new Point(402, 420), "ora");
+							hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(368*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 420*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(171, 450), "emp");
-							hexTreeBlueprint.add(new Point(215, 450), "emp");
-							hexTreeBlueprint.add(new Point(249, 450), "sea");
-							hexTreeBlueprint.add(new Point(283, 450), "sea");
-							hexTreeBlueprint.add(new Point(317, 450), "ora");
-							hexTreeBlueprint.add(new Point(351, 450), "sea");
-							hexTreeBlueprint.add(new Point(385, 450), "ora");
+							hexTreeBlueprint.add(new Point(171*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 450*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 450*factor), "ora");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -1924,104 +1937,104 @@
 					case 9:
 						//E&P 3 Extension
 						{
-								hexTreeBlueprint = new HexList(20);
+								hexTreeBlueprint = new HexList(globalRadius);
 
-								hexTreeBlueprint.add(new Point(171, 210), "emp");
-								hexTreeBlueprint.add(new Point(215, 210), "emp");
-								hexTreeBlueprint.add(new Point(249, 210), "sea");
-								hexTreeBlueprint.add(new Point(283, 210), "sea");
-								hexTreeBlueprint.add(new Point(317, 210), "gre");
-								hexTreeBlueprint.add(new Point(351, 210), "sea");
-								hexTreeBlueprint.add(new Point(385, 210), "gre");
-								hexTreeBlueprint.add(new Point(419, 210), "gre");
+								hexTreeBlueprint.add(new Point(171*factor, 210*factor), "emp");
+								hexTreeBlueprint.add(new Point(215*factor, 210*factor), "emp");
+								hexTreeBlueprint.add(new Point(249*factor, 210*factor), "sea");
+								hexTreeBlueprint.add(new Point(283*factor, 210*factor), "sea");
+								hexTreeBlueprint.add(new Point(317*factor, 210*factor), "gre");
+								hexTreeBlueprint.add(new Point(351*factor, 210*factor), "sea");
+								hexTreeBlueprint.add(new Point(385*factor, 210*factor), "gre");
+								hexTreeBlueprint.add(new Point(419*factor, 210*factor), "gre");
 
-								hexTreeBlueprint.add(new Point(164, 240), "emp");
-								hexTreeBlueprint.add(new Point(198, 240), "emp");
-								hexTreeBlueprint.add(new Point(232, 240), "sea");
-								hexTreeBlueprint.add(new Point(266, 240), "sea");
-								hexTreeBlueprint.add(new Point(300, 240), "gre");
-								hexTreeBlueprint.add(new Point(334, 240), "gre");
-								hexTreeBlueprint.add(new Point(368, 240), "gre");
-								hexTreeBlueprint.add(new Point(402, 240), "gre");
-								hexTreeBlueprint.add(new Point(436, 240), "gre");
+								hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+								hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+								hexTreeBlueprint.add(new Point(232*factor, 240*factor), "sea");
+								hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+								hexTreeBlueprint.add(new Point(300*factor, 240*factor), "gre");
+								hexTreeBlueprint.add(new Point(334*factor, 240*factor), "gre");
+								hexTreeBlueprint.add(new Point(368*factor, 240*factor), "gre");
+								hexTreeBlueprint.add(new Point(402*factor, 240*factor), "gre");
+								hexTreeBlueprint.add(new Point(436*factor, 240*factor), "gre");
 
-								hexTreeBlueprint.add(new Point(137, 270), "emp");
-								hexTreeBlueprint.add(new Point(171, 270), "emp");
-								hexTreeBlueprint.add(new Point(215, 270), "sea");
-								hexTreeBlueprint.add(new Point(249, 270), "sea");
-								hexTreeBlueprint.add(new Point(283, 270), "gre");
-								hexTreeBlueprint.add(new Point(317, 270), "gre");
-								hexTreeBlueprint.add(new Point(351, 270), "gre");
-								hexTreeBlueprint.add(new Point(385, 270), "sea");
-								hexTreeBlueprint.add(new Point(419, 270), "sea");
-								hexTreeBlueprint.add(new Point(453, 270), "gre");
+								hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+								hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+								hexTreeBlueprint.add(new Point(215*factor, 270*factor), "sea");
+								hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+								hexTreeBlueprint.add(new Point(283*factor, 270*factor), "gre");
+								hexTreeBlueprint.add(new Point(317*factor, 270*factor), "gre");
+								hexTreeBlueprint.add(new Point(351*factor, 270*factor), "gre");
+								hexTreeBlueprint.add(new Point(385*factor, 270*factor), "sea");
+								hexTreeBlueprint.add(new Point(419*factor, 270*factor), "sea");
+								hexTreeBlueprint.add(new Point(453*factor, 270*factor), "gre");
 
-								hexTreeBlueprint.add(new Point(130, 300), "emp");
-								hexTreeBlueprint.add(new Point(164, 300), "emp");
-								hexTreeBlueprint.add(new Point(198, 300), "emp");
-								hexTreeBlueprint.add(new Point(232, 300), "sea");
-								hexTreeBlueprint.add(new Point(266, 300), "sea");
-								hexTreeBlueprint.add(new Point(300, 300), "gre");
-								hexTreeBlueprint.add(new Point(334, 300), "sea");
-								hexTreeBlueprint.add(new Point(368, 300), "gre");
-								hexTreeBlueprint.add(new Point(402, 300), "gre");
-								hexTreeBlueprint.add(new Point(436, 300), "sea");
-								hexTreeBlueprint.add(new Point(470, 300), "gre");
+								hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+								hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+								hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+								hexTreeBlueprint.add(new Point(232*factor, 300*factor), "sea");
+								hexTreeBlueprint.add(new Point(266*factor, 300*factor), "sea");
+								hexTreeBlueprint.add(new Point(300*factor, 300*factor), "gre");
+								hexTreeBlueprint.add(new Point(334*factor, 300*factor), "sea");
+								hexTreeBlueprint.add(new Point(368*factor, 300*factor), "gre");
+								hexTreeBlueprint.add(new Point(402*factor, 300*factor), "gre");
+								hexTreeBlueprint.add(new Point(436*factor, 300*factor), "sea");
+								hexTreeBlueprint.add(new Point(470*factor, 300*factor), "gre");
 
-								hexTreeBlueprint.add(new Point(103, 330), "emp");
-								hexTreeBlueprint.add(new Point(137, 330), "emp");
-								hexTreeBlueprint.add(new Point(171, 330), "emp");
-								hexTreeBlueprint.add(new Point(215, 330), "emp");
-								hexTreeBlueprint.add(new Point(249, 330), "cou");
-								hexTreeBlueprint.add(new Point(283, 330), "sea");
-								hexTreeBlueprint.add(new Point(317, 330), "sea");
-								hexTreeBlueprint.add(new Point(351, 330), "sea");
-								hexTreeBlueprint.add(new Point(385, 330), "sea");
-								hexTreeBlueprint.add(new Point(419, 330), "sea");
-								hexTreeBlueprint.add(new Point(453, 330), "sea");
-								hexTreeBlueprint.add(new Point(487, 330), "sea");
+								hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+								hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+								hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+								hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+								hexTreeBlueprint.add(new Point(249*factor, 330*factor), "cou");
+								hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+								hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+								hexTreeBlueprint.add(new Point(351*factor, 330*factor), "sea");
+								hexTreeBlueprint.add(new Point(385*factor, 330*factor), "sea");
+								hexTreeBlueprint.add(new Point(419*factor, 330*factor), "sea");
+								hexTreeBlueprint.add(new Point(453*factor, 330*factor), "sea");
+								hexTreeBlueprint.add(new Point(487*factor, 330*factor), "sea");
 
-								hexTreeBlueprint.add(new Point(130, 360), "emp");
-								hexTreeBlueprint.add(new Point(164, 360), "emp");
-								hexTreeBlueprint.add(new Point(198, 360), "emp");
-								hexTreeBlueprint.add(new Point(232, 360), "sea");
-								hexTreeBlueprint.add(new Point(266, 360), "sea");
-								hexTreeBlueprint.add(new Point(300, 360), "ora");
-								hexTreeBlueprint.add(new Point(334, 360), "sea");
-								hexTreeBlueprint.add(new Point(368, 360), "ora");
-								hexTreeBlueprint.add(new Point(402, 360), "ora");
-								hexTreeBlueprint.add(new Point(436, 360), "sea");
-								hexTreeBlueprint.add(new Point(470, 360), "ora");
+								hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+								hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+								hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+								hexTreeBlueprint.add(new Point(232*factor, 360*factor), "sea");
+								hexTreeBlueprint.add(new Point(266*factor, 360*factor), "sea");
+								hexTreeBlueprint.add(new Point(300*factor, 360*factor), "ora");
+								hexTreeBlueprint.add(new Point(334*factor, 360*factor), "sea");
+								hexTreeBlueprint.add(new Point(368*factor, 360*factor), "ora");
+								hexTreeBlueprint.add(new Point(402*factor, 360*factor), "ora");
+								hexTreeBlueprint.add(new Point(436*factor, 360*factor), "sea");
+								hexTreeBlueprint.add(new Point(470*factor, 360*factor), "ora");
 
-								hexTreeBlueprint.add(new Point(137, 390), "emp");
-								hexTreeBlueprint.add(new Point(171, 390), "emp");
-								hexTreeBlueprint.add(new Point(215, 390), "sea");
-								hexTreeBlueprint.add(new Point(249, 390), "sea");
-								hexTreeBlueprint.add(new Point(283, 390), "ora");
-								hexTreeBlueprint.add(new Point(317, 390), "ora");
-								hexTreeBlueprint.add(new Point(351, 390), "ora");
-								hexTreeBlueprint.add(new Point(385, 390), "sea");
-								hexTreeBlueprint.add(new Point(419, 390), "sea");
-								hexTreeBlueprint.add(new Point(453, 390), "ora");
+								hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+								hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+								hexTreeBlueprint.add(new Point(215*factor, 390*factor), "sea");
+								hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+								hexTreeBlueprint.add(new Point(283*factor, 390*factor), "ora");
+								hexTreeBlueprint.add(new Point(317*factor, 390*factor), "ora");
+								hexTreeBlueprint.add(new Point(351*factor, 390*factor), "ora");
+								hexTreeBlueprint.add(new Point(385*factor, 390*factor), "sea");
+								hexTreeBlueprint.add(new Point(419*factor, 390*factor), "sea");
+								hexTreeBlueprint.add(new Point(453*factor, 390*factor), "ora");
 
-								hexTreeBlueprint.add(new Point(164, 420), "emp");
-								hexTreeBlueprint.add(new Point(198, 420), "emp");
-								hexTreeBlueprint.add(new Point(232, 420), "sea");
-								hexTreeBlueprint.add(new Point(266, 420), "sea");
-								hexTreeBlueprint.add(new Point(300, 420), "ora");
-								hexTreeBlueprint.add(new Point(334, 420), "ora");
-								hexTreeBlueprint.add(new Point(368, 420), "ora");
-								hexTreeBlueprint.add(new Point(402, 420), "ora");
-								hexTreeBlueprint.add(new Point(436, 420), "ora");
+								hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+								hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+								hexTreeBlueprint.add(new Point(232*factor, 420*factor), "sea");
+								hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+								hexTreeBlueprint.add(new Point(300*factor, 420*factor), "ora");
+								hexTreeBlueprint.add(new Point(334*factor, 420*factor), "ora");
+								hexTreeBlueprint.add(new Point(368*factor, 420*factor), "ora");
+								hexTreeBlueprint.add(new Point(402*factor, 420*factor), "ora");
+								hexTreeBlueprint.add(new Point(436*factor, 420*factor), "ora");
 
-								hexTreeBlueprint.add(new Point(171, 450), "emp");
-								hexTreeBlueprint.add(new Point(215, 450), "emp");
-								hexTreeBlueprint.add(new Point(249, 450), "sea");
-								hexTreeBlueprint.add(new Point(283, 450), "sea");
-								hexTreeBlueprint.add(new Point(317, 450), "ora");
-								hexTreeBlueprint.add(new Point(351, 450), "sea");
-								hexTreeBlueprint.add(new Point(385, 450), "ora");
-								hexTreeBlueprint.add(new Point(419, 450), "ora");
+								hexTreeBlueprint.add(new Point(171*factor, 450*factor), "emp");
+								hexTreeBlueprint.add(new Point(215*factor, 450*factor), "emp");
+								hexTreeBlueprint.add(new Point(249*factor, 450*factor), "sea");
+								hexTreeBlueprint.add(new Point(283*factor, 450*factor), "sea");
+								hexTreeBlueprint.add(new Point(317*factor, 450*factor), "ora");
+								hexTreeBlueprint.add(new Point(351*factor, 450*factor), "sea");
+								hexTreeBlueprint.add(new Point(385*factor, 450*factor), "ora");
+								hexTreeBlueprint.add(new Point(419*factor, 450*factor), "ora");
 
 								hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -2055,104 +2068,104 @@
 					case 10:
 						//E&P 4 Extension
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 
-							hexTreeBlueprint.add(new Point(171, 210), "emp");
-							hexTreeBlueprint.add(new Point(215, 210), "emp");
-							hexTreeBlueprint.add(new Point(249, 210), "sea");
-							hexTreeBlueprint.add(new Point(283, 210), "sea");
-							hexTreeBlueprint.add(new Point(317, 210), "gre");
-							hexTreeBlueprint.add(new Point(351, 210), "sea");
-							hexTreeBlueprint.add(new Point(385, 210), "gre");
-							hexTreeBlueprint.add(new Point(419, 210), "gre");
+							hexTreeBlueprint.add(new Point(171*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 210*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 210*factor), "gre");
+							hexTreeBlueprint.add(new Point(419*factor, 210*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "sea");
-							hexTreeBlueprint.add(new Point(266, 240), "sea");
-							hexTreeBlueprint.add(new Point(300, 240), "gre");
-							hexTreeBlueprint.add(new Point(334, 240), "gre");
-							hexTreeBlueprint.add(new Point(368, 240), "gre");
-							hexTreeBlueprint.add(new Point(402, 240), "gre");
-							hexTreeBlueprint.add(new Point(436, 240), "gre");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(368*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(436*factor, 240*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "sea");
-							hexTreeBlueprint.add(new Point(249, 270), "sea");
-							hexTreeBlueprint.add(new Point(283, 270), "gre");
-							hexTreeBlueprint.add(new Point(317, 270), "gre");
-							hexTreeBlueprint.add(new Point(351, 270), "gre");
-							hexTreeBlueprint.add(new Point(385, 270), "sea");
-							hexTreeBlueprint.add(new Point(419, 270), "sea");
-							hexTreeBlueprint.add(new Point(453, 270), "gre");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(385*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(419*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(453*factor, 270*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "emp");
-							hexTreeBlueprint.add(new Point(232, 300), "sea");
-							hexTreeBlueprint.add(new Point(266, 300), "sea");
-							hexTreeBlueprint.add(new Point(300, 300), "gre");
-							hexTreeBlueprint.add(new Point(334, 300), "sea");
-							hexTreeBlueprint.add(new Point(368, 300), "gre");
-							hexTreeBlueprint.add(new Point(402, 300), "gre");
-							hexTreeBlueprint.add(new Point(436, 300), "sea");
-							hexTreeBlueprint.add(new Point(470, 300), "gre");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(436*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(470*factor, 300*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "emp");
-							hexTreeBlueprint.add(new Point(249, 330), "cou");
-							hexTreeBlueprint.add(new Point(283, 330), "sea");
-							hexTreeBlueprint.add(new Point(317, 330), "sea");
-							hexTreeBlueprint.add(new Point(351, 330), "sea");
-							hexTreeBlueprint.add(new Point(385, 330), "sea");
-							hexTreeBlueprint.add(new Point(419, 330), "sea");
-							hexTreeBlueprint.add(new Point(453, 330), "sea");
-							hexTreeBlueprint.add(new Point(487, 330), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "cou");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(419*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(453*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(487*factor, 330*factor), "sea");
 
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "emp");
-							hexTreeBlueprint.add(new Point(232, 360), "sea");
-							hexTreeBlueprint.add(new Point(266, 360), "sea");
-							hexTreeBlueprint.add(new Point(300, 360), "ora");
-							hexTreeBlueprint.add(new Point(334, 360), "sea");
-							hexTreeBlueprint.add(new Point(368, 360), "ora");
-							hexTreeBlueprint.add(new Point(402, 360), "ora");
-							hexTreeBlueprint.add(new Point(436, 360), "sea");
-							hexTreeBlueprint.add(new Point(470, 360), "ora");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(436*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(470*factor, 360*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "sea");
-							hexTreeBlueprint.add(new Point(249, 390), "sea");
-							hexTreeBlueprint.add(new Point(283, 390), "ora");
-							hexTreeBlueprint.add(new Point(317, 390), "ora");
-							hexTreeBlueprint.add(new Point(351, 390), "ora");
-							hexTreeBlueprint.add(new Point(385, 390), "sea");
-							hexTreeBlueprint.add(new Point(419, 390), "sea");
-							hexTreeBlueprint.add(new Point(453, 390), "ora");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(385*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(419*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(453*factor, 390*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(164, 420), "emp");
-							hexTreeBlueprint.add(new Point(198, 420), "emp");
-							hexTreeBlueprint.add(new Point(232, 420), "sea");
-							hexTreeBlueprint.add(new Point(266, 420), "sea");
-							hexTreeBlueprint.add(new Point(300, 420), "ora");
-							hexTreeBlueprint.add(new Point(334, 420), "ora");
-							hexTreeBlueprint.add(new Point(368, 420), "ora");
-							hexTreeBlueprint.add(new Point(402, 420), "ora");
-							hexTreeBlueprint.add(new Point(436, 420), "ora");
+							hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(368*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(436*factor, 420*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(171, 450), "emp");
-							hexTreeBlueprint.add(new Point(215, 450), "emp");
-							hexTreeBlueprint.add(new Point(249, 450), "sea");
-							hexTreeBlueprint.add(new Point(283, 450), "sea");
-							hexTreeBlueprint.add(new Point(317, 450), "ora");
-							hexTreeBlueprint.add(new Point(351, 450), "sea");
-							hexTreeBlueprint.add(new Point(385, 450), "ora");
-							hexTreeBlueprint.add(new Point(419, 450), "ora");
+							hexTreeBlueprint.add(new Point(171*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 450*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 450*factor), "ora");
+							hexTreeBlueprint.add(new Point(419*factor, 450*factor), "ora");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -2186,113 +2199,113 @@
 					case 11:
 						//E&P 5 Extension
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 
-							hexTreeBlueprint.add(new Point(171, 210), "emp");
-							hexTreeBlueprint.add(new Point(215, 210), "emp");
-							hexTreeBlueprint.add(new Point(249, 210), "sea");
-							hexTreeBlueprint.add(new Point(283, 210), "sea");
-							hexTreeBlueprint.add(new Point(317, 210), "gre");
-							hexTreeBlueprint.add(new Point(351, 210), "sea");
-							hexTreeBlueprint.add(new Point(385, 210), "gre");
-							hexTreeBlueprint.add(new Point(419, 210), "sea");
-							hexTreeBlueprint.add(new Point(453, 210), "gre");
+							hexTreeBlueprint.add(new Point(171*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 210*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 210*factor), "gre");
+							hexTreeBlueprint.add(new Point(419*factor, 210*factor), "sea");
+							hexTreeBlueprint.add(new Point(453*factor, 210*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "sea");
-							hexTreeBlueprint.add(new Point(266, 240), "sea");
-							hexTreeBlueprint.add(new Point(300, 240), "gre");
-							hexTreeBlueprint.add(new Point(334, 240), "gre");
-							hexTreeBlueprint.add(new Point(368, 240), "gre");
-							hexTreeBlueprint.add(new Point(402, 240), "gre");
-							hexTreeBlueprint.add(new Point(436, 240), "gre");
-							hexTreeBlueprint.add(new Point(470, 240), "gre");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(368*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(436*factor, 240*factor), "gre");
+							hexTreeBlueprint.add(new Point(470*factor, 240*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "sea");
-							hexTreeBlueprint.add(new Point(249, 270), "sea");
-							hexTreeBlueprint.add(new Point(283, 270), "gre");
-							hexTreeBlueprint.add(new Point(317, 270), "gre");
-							hexTreeBlueprint.add(new Point(351, 270), "gre");
-							hexTreeBlueprint.add(new Point(385, 270), "gre");
-							hexTreeBlueprint.add(new Point(419, 270), "gre");
-							hexTreeBlueprint.add(new Point(453, 270), "gre");
-							hexTreeBlueprint.add(new Point(487, 270), "gre");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(385*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(419*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(453*factor, 270*factor), "gre");
+							hexTreeBlueprint.add(new Point(487*factor, 270*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "emp");
-							hexTreeBlueprint.add(new Point(232, 300), "sea");
-							hexTreeBlueprint.add(new Point(266, 300), "sea");
-							hexTreeBlueprint.add(new Point(300, 300), "gre");
-							hexTreeBlueprint.add(new Point(334, 300), "sea");
-							hexTreeBlueprint.add(new Point(368, 300), "gre");
-							hexTreeBlueprint.add(new Point(402, 300), "sea");
-							hexTreeBlueprint.add(new Point(436, 300), "gre");
-							hexTreeBlueprint.add(new Point(470, 300), "sea");
-							hexTreeBlueprint.add(new Point(504, 300), "gre");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(402*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(436*factor, 300*factor), "gre");
+							hexTreeBlueprint.add(new Point(470*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(504*factor, 300*factor), "gre");
 
-							hexTreeBlueprint.add(new Point(103, 330), "emp");
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "emp");
-							hexTreeBlueprint.add(new Point(249, 330), "cou");
-							hexTreeBlueprint.add(new Point(283, 330), "sea");
-							hexTreeBlueprint.add(new Point(317, 330), "sea");
-							hexTreeBlueprint.add(new Point(351, 330), "sea");
-							hexTreeBlueprint.add(new Point(385, 330), "sea");
-							hexTreeBlueprint.add(new Point(419, 330), "sea");
-							hexTreeBlueprint.add(new Point(453, 330), "sea");
-							hexTreeBlueprint.add(new Point(487, 330), "sea");
-							hexTreeBlueprint.add(new Point(521, 330), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "cou");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(419*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(453*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(487*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(521*factor, 330*factor), "sea");
 
-							hexTreeBlueprint.add(new Point(130, 360), "emp");
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "emp");
-							hexTreeBlueprint.add(new Point(232, 360), "sea");
-							hexTreeBlueprint.add(new Point(266, 360), "sea");
-							hexTreeBlueprint.add(new Point(300, 360), "ora");
-							hexTreeBlueprint.add(new Point(334, 360), "sea");
-							hexTreeBlueprint.add(new Point(368, 360), "ora");
-							hexTreeBlueprint.add(new Point(402, 360), "sea");
-							hexTreeBlueprint.add(new Point(436, 360), "ora");
-							hexTreeBlueprint.add(new Point(470, 360), "sea");
-							hexTreeBlueprint.add(new Point(504, 360), "ora");
+							hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(436*factor, 360*factor), "ora");
+							hexTreeBlueprint.add(new Point(470*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(504*factor, 360*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(137, 390), "emp");
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "sea");
-							hexTreeBlueprint.add(new Point(249, 390), "sea");
-							hexTreeBlueprint.add(new Point(283, 390), "ora");
-							hexTreeBlueprint.add(new Point(317, 390), "ora");
-							hexTreeBlueprint.add(new Point(351, 390), "ora");
-							hexTreeBlueprint.add(new Point(385, 390), "ora");
-							hexTreeBlueprint.add(new Point(419, 390), "ora");
-							hexTreeBlueprint.add(new Point(453, 390), "ora");
-							hexTreeBlueprint.add(new Point(487, 390), "ora");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(385*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(419*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(453*factor, 390*factor), "ora");
+							hexTreeBlueprint.add(new Point(487*factor, 390*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(164, 420), "emp");
-							hexTreeBlueprint.add(new Point(198, 420), "emp");
-							hexTreeBlueprint.add(new Point(232, 420), "sea");
-							hexTreeBlueprint.add(new Point(266, 420), "sea");
-							hexTreeBlueprint.add(new Point(300, 420), "ora");
-							hexTreeBlueprint.add(new Point(334, 420), "ora");
-							hexTreeBlueprint.add(new Point(368, 420), "ora");
-							hexTreeBlueprint.add(new Point(402, 420), "ora");
-							hexTreeBlueprint.add(new Point(436, 420), "ora");
-							hexTreeBlueprint.add(new Point(470, 420), "ora");
+							hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(334*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(368*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(402*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(436*factor, 420*factor), "ora");
+							hexTreeBlueprint.add(new Point(470*factor, 420*factor), "ora");
 
-							hexTreeBlueprint.add(new Point(171, 450), "emp");
-							hexTreeBlueprint.add(new Point(215, 450), "emp");
-							hexTreeBlueprint.add(new Point(249, 450), "sea");
-							hexTreeBlueprint.add(new Point(283, 450), "sea");
-							hexTreeBlueprint.add(new Point(317, 450), "ora");
-							hexTreeBlueprint.add(new Point(351, 450), "sea");
-							hexTreeBlueprint.add(new Point(385, 450), "ora");
-							hexTreeBlueprint.add(new Point(419, 450), "sea");
-							hexTreeBlueprint.add(new Point(453, 450), "ora");
+							hexTreeBlueprint.add(new Point(171*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 450*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 450*factor), "ora");
+							hexTreeBlueprint.add(new Point(351*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(385*factor, 450*factor), "ora");
+							hexTreeBlueprint.add(new Point(419*factor, 450*factor), "sea");
+							hexTreeBlueprint.add(new Point(453*factor, 450*factor), "ora");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -2325,63 +2338,63 @@
 					case 12:
 						//48
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 
-							hexTreeBlueprint.add(new Point(198, 180), "emp");
-							hexTreeBlueprint.add(new Point(232, 180), "emp");
-							hexTreeBlueprint.add(new Point(266, 180), "emp");
-							hexTreeBlueprint.add(new Point(300, 180), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 180*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 180*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 180*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 180*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(171, 210), "emp");
-							hexTreeBlueprint.add(new Point(215, 210), "emp");
-							hexTreeBlueprint.add(new Point(249, 210), "emp");
-							hexTreeBlueprint.add(new Point(283, 210), "emp");
-							hexTreeBlueprint.add(new Point(317, 210), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 210*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "emp");
-							hexTreeBlueprint.add(new Point(266, 240), "emp");
-							hexTreeBlueprint.add(new Point(300, 240), "emp");
-							hexTreeBlueprint.add(new Point(334, 240), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "emp");
-							hexTreeBlueprint.add(new Point(249, 270), "emp");
-							hexTreeBlueprint.add(new Point(283, 270), "emp");
-							hexTreeBlueprint.add(new Point(317, 270), "emp");
-							hexTreeBlueprint.add(new Point(351, 270), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(351*factor, 270*factor), "emp");
 
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "emp");
-							hexTreeBlueprint.add(new Point(232, 300), "emp");
-							hexTreeBlueprint.add(new Point(266, 300), "emp");
-							hexTreeBlueprint.add(new Point(300, 300), "emp");
-							hexTreeBlueprint.add(new Point(334, 300), "emp");
-							hexTreeBlueprint.add(new Point(368, 300), "emp");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "emp");
 							
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "emp");
-							hexTreeBlueprint.add(new Point(249, 330), "emp");
-							hexTreeBlueprint.add(new Point(283, 330), "emp");
-							hexTreeBlueprint.add(new Point(317, 330), "emp");
-							hexTreeBlueprint.add(new Point(351, 330), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(351*factor, 330*factor), "emp");
 							
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "emp");
-							hexTreeBlueprint.add(new Point(232, 360), "emp");
-							hexTreeBlueprint.add(new Point(266, 360), "emp");
-							hexTreeBlueprint.add(new Point(300, 360), "emp");
-							hexTreeBlueprint.add(new Point(334, 360), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "emp");
 							
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "emp");
-							hexTreeBlueprint.add(new Point(249, 390), "emp");
-							hexTreeBlueprint.add(new Point(283, 390), "emp");
-							hexTreeBlueprint.add(new Point(317, 390), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "emp");
 
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -2414,52 +2427,52 @@
 					case 13:
 						//37
 						{
-							hexTreeBlueprint = new HexList(20);
+							hexTreeBlueprint = new HexList(globalRadius);
 							
 
-							hexTreeBlueprint.add(new Point(171, 210), "emp");
-							hexTreeBlueprint.add(new Point(215, 210), "emp");
-							hexTreeBlueprint.add(new Point(249, 210), "emp");
-							hexTreeBlueprint.add(new Point(283, 210), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 210*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 210*factor), "emp");
 							
-							hexTreeBlueprint.add(new Point(164, 240), "emp");
-							hexTreeBlueprint.add(new Point(198, 240), "emp");
-							hexTreeBlueprint.add(new Point(232, 240), "emp");
-							hexTreeBlueprint.add(new Point(266, 240), "emp");
-							hexTreeBlueprint.add(new Point(300, 240), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 240*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 240*factor), "emp");
 							
-							hexTreeBlueprint.add(new Point(137, 270), "emp");
-							hexTreeBlueprint.add(new Point(171, 270), "emp");
-							hexTreeBlueprint.add(new Point(215, 270), "emp");
-							hexTreeBlueprint.add(new Point(249, 270), "emp");
-							hexTreeBlueprint.add(new Point(283, 270), "emp");
-							hexTreeBlueprint.add(new Point(317, 270), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 270*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 270*factor), "emp");
 							
-							hexTreeBlueprint.add(new Point(130, 300), "emp");
-							hexTreeBlueprint.add(new Point(164, 300), "emp");
-							hexTreeBlueprint.add(new Point(198, 300), "emp");
-							hexTreeBlueprint.add(new Point(232, 300), "emp");
-							hexTreeBlueprint.add(new Point(266, 300), "emp");
-							hexTreeBlueprint.add(new Point(300, 300), "emp");
-							hexTreeBlueprint.add(new Point(334, 300), "emp");
+							hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 300*factor), "emp");
+							hexTreeBlueprint.add(new Point(334*factor, 300*factor), "emp");
 							
-							hexTreeBlueprint.add(new Point(137, 330), "emp");
-							hexTreeBlueprint.add(new Point(171, 330), "emp");
-							hexTreeBlueprint.add(new Point(215, 330), "emp");
-							hexTreeBlueprint.add(new Point(249, 330), "emp");
-							hexTreeBlueprint.add(new Point(283, 330), "emp");
-							hexTreeBlueprint.add(new Point(317, 330), "emp");
+							hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "emp");
+							hexTreeBlueprint.add(new Point(317*factor, 330*factor), "emp");
 							
-							hexTreeBlueprint.add(new Point(164, 360), "emp");
-							hexTreeBlueprint.add(new Point(198, 360), "emp");
-							hexTreeBlueprint.add(new Point(232, 360), "emp");
-							hexTreeBlueprint.add(new Point(266, 360), "emp");
-							hexTreeBlueprint.add(new Point(300, 360), "emp");
+							hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(232*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(266*factor, 360*factor), "emp");
+							hexTreeBlueprint.add(new Point(300*factor, 360*factor), "emp");
 							
-							hexTreeBlueprint.add(new Point(171, 390), "emp");
-							hexTreeBlueprint.add(new Point(215, 390), "emp");
-							hexTreeBlueprint.add(new Point(249, 390), "emp");
-							hexTreeBlueprint.add(new Point(283, 390), "emp");
+							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "emp");
 							
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -2500,39 +2513,93 @@
 	<div id="guideDiv">
 		<h3>Guide</h3><br>
 		<p>Premise: The idea of this tool is that you can randomly generate tiles and their number tokens according to a set format for a game of Catan.</p>
-		<p>If all you want is a basic game or the extension, simply select one of those maps at the top of the dropdown box near the bottom of the left hand side of the page. Once you've done that, click on the allot tiles button and you should have a randomly set board on the right side of the screen. You can do the exact with all the other maps too.</p>
+		<p>If all you want is a basic game or the extension, simply select one of those maps at the top of the dropdown box near the bottom of the left hand side of the page. Once you've done that, click on the allot tiles button and you should have a randomly set board on the right side of the screen. You can do the exact same with all the other maps too.</p>
 		<p>If you'd like to create your own map, just select the kind of tile you want to place with the radio buttons on the left and click on the left hand map. For all tiles thereafter, they will need to be joined to the current board, so click beside any tile to add another. If you want to change a tile, click it again with a different tile. The 'random' tile will act just like the ones you've seen in the examples. Just be sure to provide enough in the tile supply to fill those random ones with. Also be sure to supply the kind of tokens you want to fill those tiles with, if they need tokens.</p>
 		<p>If your map becomes considerably large, you can move around by holding down shift and dragging with the mouse at the same time.</p>
 		<button type="button" onclick="hideHelp()">Hide this Information</button>
 	</div>
 	<div id="mainGridDiv" style="display: grid; grid-template-columns: 200px auto auto;">
 		<div id="controlsDiv">
-			<label for="numSea">Sea:</label><input type="number" min="0" value="0" style="width: 40px;" id="numSea">
-			<input type="radio" name="plTile" id="placeSea"><label for="placeSea">Place</label><br>
-			<label for="numGre">Green Moon:</label><input type="number" min="0" value="0" style="width: 40px;" id="numGre">
-			<input type="radio" name="plTile" id="placeGre"><label for="placeGre">Place</label><br>
-			<label for="numOra">Orange Sun:</label><input type="number" min="0" value="0" style="width: 40px;" id="numOra">
-			<input type="radio" name="plTile" id="placeOra"><label for="placeOra">Place</label><br>
-			<label for="numFie">Fields:</label><input type="number" min="0" value="0" style="width: 40px;" id="numFie">
-			<input type="radio" name="plTile" id="placeFie"><label for="placeFie">Place</label><br>
-			<label for="numPas">Pasture:</label><input type="number" min="0" value="0" style="width: 40px;" id="numPas">
-			<input type="radio" name="plTile" id="placePas"><label for="placePas">Place</label><br>
-			<label for="numMou">Mountains:</label><input type="number" min="0" value="0" style="width: 40px;" id="numMou">
-			<input type="radio" name="plTile" id="placeMou"><label for="placeMou">Place</label><br>
-			<label for="numHil">Hills:</label><input type="number" min="0" value="0" style="width: 40px;" id="numHil">
-			<input type="radio" name="plTile" id="placeHil"><label for="placeHil">Place</label><br>
-			<label for="numFor">Forest:</label><input type="number" min="0" value="0" style="width: 40px;" id="numFor">
-			<input type="radio" name="plTile" id="placeFor"><label for="placeFor">Place</label><br>
-			<label for="numDes">Desert:</label><input type="number" min="0" value="0" style="width: 40px;" id="numDes">
-			<input type="radio" name="plTile" id="placeDes"><label for="placeDes">Place</label><br>
-			<label for="numCou">Council:</label><input type="number" min="0" value="0" style="width: 40px;" id="numCou">
-			<input type="radio" name="plTile" id="placeCou"><label for="placeCou">Place</label><br>
-			<label for="numFis">Fish:</label><input type="number" min="0" value="0" style="width: 40px;" id="numFis">
-			<input type="radio" name="plTile" id="placeFis"><label for="placeFis">Place</label><br>
-			<label for="numSpi">Spice:</label><input type="number" min="0" value="0" style="width: 40px;" id="numSpi">
-			<input type="radio" name="plTile" id="placeSpi"><label for="placeSpi">Place</label><br>
-			<label for="numGol">Gold:</label><input type="number" min="0" value="0" style="width: 40px;" id="numGol">
-			<input type="radio" name="plTile" id="placeGol"><label for="placeGol">Place</label><br>
+			<label for="scaleNum">Scale:</label><input type="number" id="scaleNum" min="10" max="200" value="20">
+		
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeSea">
+				<label for="placeSea" style="float: right;">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numSea">
+				<label for="numSea" style="float: right;">Sea:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeGre">
+				<label style="float: right;" for="placeGre">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numGre">
+				<label for="numGre" style="float: right;">Green Moon:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeOra">
+				<label style="float: right;" for="placeOra">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numOra">
+				<label for="numOra" style="float: right;">Orange Sun:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeFie">
+				<label style="float: right;" for="placeFie">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numFie">
+				<label for="numFie" style="float: right;">Fields:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placePas">
+				<label style="float: right;" for="placePas">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numPas">
+				<label for="numPas" style="float: right;">Pasture:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeMou">
+				<label style="float: right;" for="placeMou">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numMou">
+				<label for="numMou" style="float: right;">Mountains:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeHil">
+				<label style="float: right;" for="placeHil">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numHil">
+				<label for="numHil" style="float: right;">Hills:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeFor">
+				<label style="float: right;" for="placeFor">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numFor">
+				<label for="numFor" style="float: right;">Forest:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeDes">
+				<label style="float: right;" for="placeDes">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numDes">
+				<label for="numDes" style="float: right;">Desert:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeCou">
+				<label style="float: right;" for="placeCou">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numCou">
+				<label for="numCou" style="float: right;">Council:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeFis">
+				<label style="float: right;" for="placeFis">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numFis">
+				<label for="numFis" style="float: right;">Fish:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeSpi">
+				<label style="float: right;" for="placeSpi">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numSpi">
+				<label for="numSpi" style="float: right;">Spice:</label>
+			</div>
+			<div style="height: 23px;">
+				<input type="radio" name="plTile" style="float: right;" id="placeGol">
+				<label style="float: right;" for="placeGol">Place</label>
+				<input type="number" min="0" value="0" style="float: right;width: 40px;" id="numGol">
+				<label for="numGol" style="float: right;">Gold:</label>
+			</div>
 			Random<input type="radio" name="plTile" id="placeRan" checked><label for="placeRan">Place</label><br>
 			<button type="button" id="allotButton">Allot Remaining Tiles</button>
 			<div id="tokenDiv" style="display: grid; grid-template-columns: auto auto;">
@@ -2547,7 +2614,8 @@
 				<div id="token11Div"><label for="">11:</label><input type="number" min="0" value="0" id="token11" style="width: 40px;"></div>
 				<div id="token12Div"><label for="">12:</label><input type="number" min="0" value="0" id="token12" style="width: 40px;"></div>
 			</div><br>
-			<p id="leftoverP"></p><br>
+			<p id="leftoverP"></p>
+			
 			<select onchange="loadTemplate()" id="templateSelection">
 				<option value="0">Base [19]</option>
 				<option value="1">Base Extension [30]</option>
@@ -2563,7 +2631,8 @@
 				<option value="11">E&P 5 Extension [97]</option>
 				<option value="12">[48]</option>
 				<option value="13">[37]</option>
-			</select>
+			</select><br>
+			<button type="button" id="resetButton">Reset</button>
 		</div>
 		<div id="blueprintDiv">
 			<canvas id="blueCanvas" width="500" height="1000" style="border: 5px solid blue;"></canvas>
