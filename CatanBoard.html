@@ -104,11 +104,13 @@
 								break;
 							case "gre":
 								this.needsToken = false;
-								this.brush = "rgba(0,255,255,255)";
+								this.brush = "rgba(0,0,255,255)";
+								//this.brush = "rgba(0,255,255,255)";
 								break;
 							case "ora":
 								this.needsToken = false;
-								this.brush = "rgba(255,140,0,255)";
+								//this.brush = "rgba(255,140,0,255)";
+								this.brush = "rgba(0,0,255,255)";
 								break;
 							case "gol":
 								this.needsToken = false;
@@ -214,6 +216,46 @@
 							{
 								graphics.strokeStyle = "rgba(173,216,230,255)";
 								graphics.stroke();
+							}
+							else if (this.type=="cou")
+							{	
+								let circleRadius = (this.points[0].x-this.points[2].x)/3.7;
+								graphics.beginPath();
+								graphics.arc(this.centre.x, this.centre.y+circleRadius/3.5, circleRadius, 0, 2 * Math.PI);
+								graphics.fillStyle = "green";
+								graphics.fill();
+								let houseDiameter = this.radius/3;
+								graphics.beginPath();
+								graphics.moveTo(this.centre.x-houseDiameter,this.centre.y+houseDiameter);
+								graphics.lineTo(this.centre.x+houseDiameter,this.centre.y+houseDiameter);
+								graphics.lineTo(this.centre.x+houseDiameter,this.centre.y-houseDiameter*0.8);
+								graphics.lineTo(this.centre.x,this.centre.y-houseDiameter*1.5);
+								graphics.lineTo(this.centre.x-houseDiameter,this.centre.y-houseDiameter*0.8);
+								//graphics.lineTo(this.points[4].x,this.points[4].y);
+								//graphics.lineTo(this.points[5].x,this.points[5].y);
+								graphics.closePath();
+								graphics.fillStyle = "brown";
+								graphics.fill();
+							}
+							else if (this.type=="ora")
+							{
+								let circleRadius = (this.points[0].x-this.points[2].x)/5;
+								graphics.beginPath();
+								graphics.arc(this.centre.x, this.centre.y, circleRadius, 0, 2 * Math.PI);
+								graphics.fillStyle = "orange";
+								graphics.fill();
+							}
+							else if (this.type=="gre")
+							{
+								let circleRadius = (this.points[0].x-this.points[2].x)/5;
+								graphics.beginPath();
+								graphics.arc(this.centre.x, this.centre.y, circleRadius, 0, 2 * Math.PI);
+								graphics.fillStyle = "green";
+								graphics.fill();
+								graphics.beginPath();
+								graphics.arc(this.centre.x+circleRadius/2, this.centre.y, circleRadius, 0, 2 * Math.PI);
+								graphics.fillStyle = "blue";
+								graphics.fill();
 							}
 							if (this.needsToken&&(this.points[0].x!=this.points[2].x))
 							{
