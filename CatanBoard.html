@@ -2555,6 +2555,69 @@
 							document.getElementById('token12').value = 3;
 						}
 						break;
+					case 14:
+						{
+							hexTreeBlueprint = new HexList(globalRadius);
+
+						hexTreeBlueprint.add(new Point(164*factor, 240*factor), "emp");
+						hexTreeBlueprint.add(new Point(198*factor, 240*factor), "emp");
+						hexTreeBlueprint.add(new Point(232*factor, 240*factor), "emp");
+
+						hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+						hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+						hexTreeBlueprint.add(new Point(215*factor, 270*factor), "emp");
+						hexTreeBlueprint.add(new Point(249*factor, 270*factor), "emp");
+
+						hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(232*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(266*factor, 300*factor), "emp");
+
+						hexTreeBlueprint.add(new Point(249*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+
+						hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(232*factor, 360*factor), "emp");
+
+						hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
+						hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
+						hexTreeBlueprint.add(new Point(215*factor, 390*factor), "emp");
+
+						hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
+
+						
+						document.getElementById('numSea').value = 0;
+						document.getElementById('numGre').value = 0;
+						document.getElementById('numOra').value = 0;
+						document.getElementById('numFie').value = 6;
+						document.getElementById('numPas').value = 6;
+						document.getElementById('numMou').value = 5;
+						document.getElementById('numHil').value = 5;
+						document.getElementById('numFor').value = 6;
+						document.getElementById('numDes').value = 2;
+						document.getElementById('numFis').value = 0;
+						document.getElementById('numCou').value = 0;
+						document.getElementById('numSpi').value = 0;
+						document.getElementById('numGol').value = 0;
+
+						document.getElementById('token2').value = 2;
+						document.getElementById('token3').value = 3;
+						document.getElementById('token4').value = 3;
+						document.getElementById('token5').value = 3;
+						document.getElementById('token6').value = 3;
+						document.getElementById('token8').value = 3;
+						document.getElementById('token9').value = 3;
+						document.getElementById('token10').value = 3;
+						document.getElementById('token11').value = 3;
+						document.getElementById('token12').value = 2;
+						}
+						break;
 				}
 				drawBlueCan();
 				drawRealCan();
@@ -2684,6 +2747,7 @@
 				<option value="11">E&P 5 Extension [97]</option>
 				<option value="12">[48]</option>
 				<option value="13">[37]</option>
+				<option value="14">[24]</option>
 			</select><br>
 			<button type="button" id="resetButton">Reset</button><br>
 			<button type="button" onclick="hideHelp()" id="helpButton">Show Help</button>
