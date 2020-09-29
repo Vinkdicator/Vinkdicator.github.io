@@ -1385,6 +1385,15 @@
 							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "emp");
 							hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
 							hexTreeBlueprint.add(new Point(215*factor, 390*factor), "emp");
+							hexTreeBlueprint.add(new Point(198*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(130*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 270*factor), "sea");
+							hexTreeBlueprint.add(new Point(96*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(283*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(96*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(130*factor, 420*factor), "sea");
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 							
 							document.getElementById('numSea').value = 0;
@@ -1411,6 +1420,13 @@
 							document.getElementById('token10').value = 2;
 							document.getElementById('token11').value = 2;
 							document.getElementById('token12').value = 1;
+							
+							document.getElementById('harbour3').value = 4;
+							document.getElementById('harbourBrick').value = 1;
+							document.getElementById('harbourOre').value = 1;
+							document.getElementById('harbourWheat').value = 1;
+							document.getElementById('harbourSheep').value = 1;
+							document.getElementById('harbourWood').value = 1;
 						}
 						break;
 					case 1:
@@ -1455,6 +1471,18 @@
 						hexTreeBlueprint.add(new Point(164*factor, 420*factor), "emp");
 						hexTreeBlueprint.add(new Point(198*factor, 420*factor), "emp");
 						hexTreeBlueprint.add(new Point(232*factor, 420*factor), "emp");
+						
+						hexTreeBlueprint.add(new Point(232*factor, 210*factor), "sea");
+						hexTreeBlueprint.add(new Point(130*factor, 210*factor), "sea");
+						hexTreeBlueprint.add(new Point(283*factor, 240*factor), "sea");
+						hexTreeBlueprint.add(new Point(96*factor, 300*factor), "sea");
+						hexTreeBlueprint.add(new Point(317*factor, 330*factor), "sea");
+						hexTreeBlueprint.add(new Point(96*factor, 360*factor), "sea");
+						hexTreeBlueprint.add(new Point(103*factor, 390*factor), "sea");
+						hexTreeBlueprint.add(new Point(283*factor, 390*factor), "sea");
+						hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
+						hexTreeBlueprint.add(new Point(232*factor, 450*factor), "sea");
+						hexTreeBlueprint.add(new Point(130*factor, 450*factor), "sea");
 
 						hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
@@ -1484,6 +1512,12 @@
 						document.getElementById('token11').value = 3;
 						document.getElementById('token12').value = 2;
 						
+						document.getElementById('harbour3').value = 5;
+						document.getElementById('harbourBrick').value = 1;
+						document.getElementById('harbourOre').value = 1;
+						document.getElementById('harbourWheat').value = 1;
+						document.getElementById('harbourSheep').value = 2;
+						document.getElementById('harbourWood').value = 1;
 				}
 						break;
 					case 2:
@@ -2801,35 +2835,56 @@
 							hexTreeBlueprint.add(new Point(249*factor, 390*factor), "emp");
 							hexTreeBlueprint.add(new Point(283*factor, 390*factor), "emp");
 							
+							hexTreeBlueprint.add(new Point(164*factor, 180*factor), "sea");
+							hexTreeBlueprint.add(new Point(198*factor, 180*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 180*factor), "sea");
+							hexTreeBlueprint.add(new Point(300*factor, 180*factor), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(334*factor, 240*factor), "sea");
+							hexTreeBlueprint.add(new Point(96*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(368*factor, 300*factor), "sea");
+							hexTreeBlueprint.add(new Point(103*factor, 330*factor), "sea");
+							hexTreeBlueprint.add(new Point(334*factor, 360*factor), "sea");
+							hexTreeBlueprint.add(new Point(137*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(317*factor, 390*factor), "sea");
+							hexTreeBlueprint.add(new Point(198*factor, 420*factor), "sea");
+							hexTreeBlueprint.add(new Point(266*factor, 420*factor), "sea");
 							hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
-							document.getElementById('numSea').value = 36;
+							document.getElementById('numSea').value = 0;
 							document.getElementById('numGre').value = 0;
 							document.getElementById('numOra').value = 0;
-							document.getElementById('numFie').value = 10;
-							document.getElementById('numPas').value = 9;
-							document.getElementById('numMou').value = 10;
-							document.getElementById('numHil').value = 8;
-							document.getElementById('numFor').value = 9;
+							document.getElementById('numFie').value = 8;
+							document.getElementById('numPas').value = 8;
+							document.getElementById('numMou').value = 6;
+							document.getElementById('numHil').value = 6;
+							document.getElementById('numFor').value = 7;
 							document.getElementById('numDes').value = 2;
-							document.getElementById('numFis').value = 6;
-							document.getElementById('numCou').value = 2;
-							document.getElementById('numSpi').value = 6;
-							document.getElementById('numGol').value = 8;
+							document.getElementById('numFis').value = 0;
+							document.getElementById('numCou').value = 0;
+							document.getElementById('numSpi').value = 0;
+							document.getElementById('numGol').value = 0;
 
-							document.getElementById('token2').value = 4;
-							document.getElementById('token3').value = 7;
-							document.getElementById('token4').value = 8;
-							document.getElementById('token5').value = 8;
-							document.getElementById('token6').value = 6;
-							document.getElementById('token8').value = 6;
-							document.getElementById('token9').value = 8;
-							document.getElementById('token10').value = 8;
-							document.getElementById('token11').value = 6;
-							document.getElementById('token12').value = 3;
+							document.getElementById('token2').value = 3;
+							document.getElementById('token3').value = 4;
+							document.getElementById('token4').value = 4;
+							document.getElementById('token5').value = 4;
+							document.getElementById('token6').value = 4;
+							document.getElementById('token8').value = 4;
+							document.getElementById('token9').value = 4;
+							document.getElementById('token10').value = 3;
+							document.getElementById('token11').value = 3;
+							document.getElementById('token12').value = 2;
+						document.getElementById('harbour3').value = 5;
+						document.getElementById('harbourBrick').value = 2;
+						document.getElementById('harbourOre').value = 2;
+						document.getElementById('harbourWheat').value = 2;
+						document.getElementById('harbourSheep').value = 2;
+						document.getElementById('harbourWood').value = 2;
 						}
 						break;
 					case 14:
+						//24
 						{
 							hexTreeBlueprint = new HexList(globalRadius);
 
@@ -2863,18 +2918,28 @@
 						hexTreeBlueprint.add(new Point(171*factor, 390*factor), "emp");
 						hexTreeBlueprint.add(new Point(215*factor, 390*factor), "emp");
 
+						hexTreeBlueprint.add(new Point(137*factor, 210*factor), "sea");
+						hexTreeBlueprint.add(new Point(215*factor, 210*factor), "sea");
+						hexTreeBlueprint.add(new Point(266*factor, 240*factor), "sea");
+						hexTreeBlueprint.add(new Point(96*factor, 300*factor), "sea");
+						hexTreeBlueprint.add(new Point(300*factor, 300*factor), "sea");
+						hexTreeBlueprint.add(new Point(96*factor, 360*factor), "sea");
+						hexTreeBlueprint.add(new Point(266*factor, 360*factor), "sea");
+						hexTreeBlueprint.add(new Point(249*factor, 390*factor), "sea");
+						hexTreeBlueprint.add(new Point(130*factor, 420*factor), "sea");
+						hexTreeBlueprint.add(new Point(198*factor, 420*factor), "sea");
 						hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
 
 						
 						document.getElementById('numSea').value = 0;
 						document.getElementById('numGre').value = 0;
 						document.getElementById('numOra').value = 0;
-						document.getElementById('numFie').value = 6;
-						document.getElementById('numPas').value = 6;
-						document.getElementById('numMou').value = 5;
-						document.getElementById('numHil').value = 5;
-						document.getElementById('numFor').value = 6;
-						document.getElementById('numDes').value = 2;
+						document.getElementById('numFie').value = 5;
+						document.getElementById('numPas').value = 5;
+						document.getElementById('numMou').value = 4;
+						document.getElementById('numHil').value = 4;
+						document.getElementById('numFor').value = 5;
+						document.getElementById('numDes').value = 1;
 						document.getElementById('numFis').value = 0;
 						document.getElementById('numCou').value = 0;
 						document.getElementById('numSpi').value = 0;
@@ -2890,6 +2955,218 @@
 						document.getElementById('token10').value = 3;
 						document.getElementById('token11').value = 3;
 						document.getElementById('token12').value = 2;
+						document.getElementById('harbour3').value = 5;
+						document.getElementById('harbourBrick').value = 1;
+						document.getElementById('harbourOre').value = 1;
+						document.getElementById('harbourWheat').value = 1;
+						document.getElementById('harbourSheep').value = 1;
+						document.getElementById('harbourWood').value = 1;
+						}
+						break;
+					case 15:
+						//long
+						{
+							hexTreeBlueprint = new HexList(globalRadius);
+
+						hexTreeBlueprint.add(new Point(137*factor, 270*factor), "emp");
+						hexTreeBlueprint.add(new Point(171*factor, 270*factor), "emp");
+						hexTreeBlueprint.add(new Point(215*factor, 270*factor), "emp");
+						hexTreeBlueprint.add(new Point(249*factor, 270*factor), "emp");
+
+						hexTreeBlueprint.add(new Point(130*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(164*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(198*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(232*factor, 300*factor), "emp");
+						hexTreeBlueprint.add(new Point(266*factor, 300*factor), "emp");
+
+						hexTreeBlueprint.add(new Point(249*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(215*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(171*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(137*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(103*factor, 330*factor), "emp");
+						hexTreeBlueprint.add(new Point(283*factor, 330*factor), "emp");
+						
+						var a1 = 96;
+						var a2 = 130;
+						var a3 = 164;
+						var a4 = 198;
+						var a5 = 232;
+						var a6 = 266;
+						var a7 = 300;
+						var b1 = 360;
+
+						hexTreeBlueprint.add(new Point(96*factor, 360*factor), "emp");//1
+						hexTreeBlueprint.add(new Point(130*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(164*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(198*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(232*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(266*factor, 360*factor), "emp");
+						hexTreeBlueprint.add(new Point(300*factor, 360*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//2
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//3
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//4
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//5
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//6
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//7
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//8
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//9
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//10
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//11
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//12
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//13
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//14
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");//15
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a7+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a6+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a5+=17)*factor, (b1)*factor), "emp");
+
+						hexTreeBlueprint.add(new Point((a1+=17)*factor, (b1+=30)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a2+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a3+=17)*factor, (b1)*factor), "emp");
+						hexTreeBlueprint.add(new Point((a4+=17)*factor, (b1)*factor), "emp");
+
+						
+						hexTreeOutcome = HexListFromHexList(hexTreeBlueprint);
+
+						
+						document.getElementById('numSea').value = 0;
+						document.getElementById('numGre').value = 0;
+						document.getElementById('numOra').value = 0;
+						document.getElementById('numFie').value = 5;
+						document.getElementById('numPas').value = 5;
+						document.getElementById('numMou').value = 4;
+						document.getElementById('numHil').value = 4;
+						document.getElementById('numFor').value = 5;
+						document.getElementById('numDes').value = 1;
+						document.getElementById('numFis').value = 0;
+						document.getElementById('numCou').value = 0;
+						document.getElementById('numSpi').value = 0;
+						document.getElementById('numGol').value = 0;
+
+						document.getElementById('token2').value = 2;
+						document.getElementById('token3').value = 3;
+						document.getElementById('token4').value = 3;
+						document.getElementById('token5').value = 3;
+						document.getElementById('token6').value = 3;
+						document.getElementById('token8').value = 3;
+						document.getElementById('token9').value = 3;
+						document.getElementById('token10').value = 3;
+						document.getElementById('token11').value = 3;
+						document.getElementById('token12').value = 2;
+						document.getElementById('harbour3').value = 5;
+						document.getElementById('harbourBrick').value = 1;
+						document.getElementById('harbourOre').value = 1;
+						document.getElementById('harbourWheat').value = 1;
+						document.getElementById('harbourSheep').value = 1;
+						document.getElementById('harbourWood').value = 1;
 						}
 						break;
 				}
@@ -3030,6 +3307,7 @@
 				<option value="12">[48]</option>
 				<option value="13">[37]</option>
 				<option value="14">[24]</option>
+				<option value="15">long [135]</option>
 			</select><br>
 			<button type="button" id="resetButton">Reset</button><br>
 			<button type="button" onclick="hideHelp()" id="helpButton">Show Help</button>
