@@ -101,6 +101,8 @@
 							case "sea":
 								this.needsToken = false;
 								this.brush = "rgba(0,0,255,255)";
+								this.harbourType = null;
+								this.harbourPosition = null;
 								break;
 							case "gre":
 								this.needsToken = false;
@@ -126,6 +128,88 @@
 				this.configurePoints();
 				this.configureCentres();
 				this.assignTypeDependencies();
+				this.drawHarbour = function(graphics){
+					if (this.harbourPosition=='E')
+					{
+						var point1 = this.points[0];
+						var point2 = this.points[5];
+					}
+					else if (this.harbourPosition=='W')
+					{
+						var point1 = this.points[2];
+						var point2 = this.points[3];
+					}
+					else if (this.harbourPosition=='NE')
+					{
+						var point1 = this.points[0];
+						var point2 = this.points[1];
+					}
+					else if (this.harbourPosition=='NW')
+					{
+						var point1 = this.points[1];
+						var point2 = this.points[2];
+					}
+					else if (this.harbourPosition=='SE')
+					{
+						var point1 = this.points[4];
+						var point2 = this.points[5];
+					}
+					else if (this.harbourPosition=='SW')
+					{
+						var point1 = this.points[3];
+						var point2 = this.points[4];
+					}
+					graphics.beginPath();
+					graphics.moveTo(point1.x,point1.y);
+					graphics.lineTo(this.centre.x,this.centre.y);
+					graphics.closePath();
+					graphics.strokeStyle = 'brown';
+					graphics.stroke();
+					graphics.beginPath();
+					graphics.moveTo(point2.x,point2.y);
+					graphics.lineTo(this.centre.x,this.centre.y);
+					graphics.closePath();
+					graphics.strokeStyle = 'brown';
+					graphics.stroke();
+						
+					let circleRadius = (this.points[0].x-this.points[2].x)/6;
+					let fontSize = circleRadius*1.2;
+					graphics.beginPath();
+					graphics.arc(this.centre.x, this.centre.y, circleRadius, 0, 2 * Math.PI);
+					if (this.harbourType=='sheep')
+					{
+						graphics.fillStyle = "rgba(144,238,144,255)";
+					}
+					else if (this.harbourType=='brick')
+					{
+						graphics.fillStyle = "rgba(255,165,0,255)";
+					}
+					else if (this.harbourType=='ore')
+					{
+						graphics.fillStyle = "rgba(208,208,208,255)";
+					}
+					else if (this.harbourType=='wood')
+					{
+						graphics.fillStyle = "rgba(0,100,0,255)";
+					}
+					else if (this.harbourType=='wheat')
+					{
+						graphics.fillStyle = "rgba(255,246,7,255)";
+					}
+					else if (this.harbourType=='3')
+					{
+						graphics.fillStyle = "white";
+					}
+					graphics.fill();
+					if (this.harbourType=='3')
+					{
+						graphics.fillStyle = "black";
+						graphics.font = fontSize + "px Arial, sans-serif";
+						graphics.textAlign = "center";
+						graphics.textBaseline = "middle";
+						graphics.fillText('3:1',this.centre.x,this.centre.y);
+					}
+				};
 				
 				this.containsPoint = function(point)
 				{
@@ -216,6 +300,10 @@
 							{
 								graphics.strokeStyle = "rgba(173,216,230,255)";
 								graphics.stroke();
+								if (this.harbourType!=null&&this.harbourType!='emp')
+								{
+									this.drawHarbour(graphics);
+								}
 							}
 							else if (this.type=="cou")
 							{	
@@ -330,6 +418,42 @@
 				this.canHoldRedToken = function()
 				{
 					return ((this.northEastHex==null|| !this.northEastHex.needsToken || this.northEastHex.tokenNumber!=6&& this.northEastHex.tokenNumber != 8)&& (this.northWestHex == null || !this.northWestHex.needsToken || this.northWestHex.tokenNumber != 6 && this.northWestHex.tokenNumber != 8)&& (this.eastHex == null || !this.eastHex.needsToken || this.eastHex.tokenNumber != 6 && this.eastHex.tokenNumber != 8)&& (this.westHex == null || !this.westHex.needsToken || this.westHex.tokenNumber != 6 && this.westHex.tokenNumber != 8)&& (this.southEastHex == null || !this.southEastHex.needsToken || this.southEastHex.tokenNumber != 6 && this.southEastHex.tokenNumber != 8)&& (this.southWestHex == null || !this.southWestHex.needsToken || this.southWestHex.tokenNumber != 6 && this.southWestHex.tokenNumber != 8));
+				};
+				this.canHoldHarbour = function()
+				{
+					return (this.type== 'sea'&&this.harbourType==null&&((this.northEastHex!=null&&this.northEastHex.isLand())||(this.northWestHex!=null&&this.northWestHex.isLand())||(this.westHex!=null&&this.westHex.isLand())||(this.southEastHex!=null&&this.southEastHex.isLand())||(this.southWestHex!=null&&this.southWestHex.isLand())||(this.eastHex!=null&&this.eastHex.isLand())));
+				};
+				this.isLand = function()
+				{
+					switch (this.type)
+						{
+							case "des":
+								return true;
+							case "fie":
+								return true;
+							case "fis":
+								return false;
+							case "cou":
+								return false;
+							case "for":
+								return true;
+							case "pas":
+								return true;
+							case "mou":
+								return true;
+							case "hil":
+								return true;
+							case "sea":
+								return false;
+							case "gre":
+								return false;
+							case "ora":
+								return false;
+							case "gol":
+								return true;
+							case "spi":
+								return true;
+						}
 				};
 				this.setType = function(type)
 				{
@@ -514,8 +638,33 @@
 					}
 					return null;
 				};
-				
-				
+				this.getFirstHarbourless = function()
+				{
+					//console.log("entered a getfirst");
+					let arrayLength = this.hexes.length;
+					for (let i = 0; i < arrayLength; i++) 
+					{
+						if (this.hexes[i].canHoldHarbour())
+						{
+							return this.hexes[i];
+						}
+					}
+					return null;
+				};
+				this.numHarbourless = function()
+				{
+					let total = 0;
+					let arrayLength = this.hexes.length;
+					//alert(arrayLength);
+					for (let i = 0; i < arrayLength; i++) 
+					{
+						if (this.hexes[i].canHoldHarbour())
+						{
+							total++;
+						}
+					}
+					return total;
+				};
 				this.numUntokened = function()
 				{
 					let total = 0;
@@ -1068,6 +1217,131 @@
 						}
 						document.getElementById("leftoverP").innerHTML = labelLeftText;
 						placeNumbers();
+						let harboursCount = 0;
+						let harbour3Count = parseInt(document.getElementById('harbour3').value);
+						harboursCount += harbour3Count;
+						let harbourWheatCount = parseInt(document.getElementById('harbourWheat').value);
+						harboursCount += harbourWheatCount;
+						let harbourSheepCount = parseInt(document.getElementById('harbourSheep').value);
+						harboursCount += harbourSheepCount;
+						let harbourWoodCount = parseInt(document.getElementById('harbourWood').value);
+						harboursCount += harbourWoodCount;
+						let harbourOreCount = parseInt(document.getElementById('harbourOre').value);
+						harboursCount += harbourOreCount;
+						let harbourBrickCount = parseInt(document.getElementById('harbourBrick').value);
+						harboursCount += harbourBrickCount;
+						let harbourEmptyCount = hexTreeOutcome.numHarbourless() - harboursCount;
+						while (harboursCount + harbourEmptyCount > 0)
+						{
+							let roll = Math.floor((Math.random() * (harboursCount+harbourEmptyCount)) + 1);
+							//alert(roll);
+							let rollingCount = 0;
+							let chosenHex = null;
+							if (roll <= (rollingCount+=harbour3Count))
+							{
+								chosenHex = hexTreeOutcome.getFirstHarbourless();
+								chosenHex.harbourType = '3';
+								harbour3Count--;
+								harboursCount--;
+							}
+							else if (roll <= (rollingCount+=harbourWheatCount))
+							{
+								chosenHex = hexTreeOutcome.getFirstHarbourless();
+								chosenHex.harbourType = 'wheat';
+								harbourWheatCount--;
+								harboursCount--;
+							}
+							else if (roll <= (rollingCount+=harbourSheepCount))
+							{
+								chosenHex = hexTreeOutcome.getFirstHarbourless();
+								chosenHex.harbourType = 'sheep';
+								harbourSheepCount--;
+								harboursCount--;
+							}
+							else if (roll <= (rollingCount+=harbourOreCount))
+							{
+								chosenHex = hexTreeOutcome.getFirstHarbourless();
+								chosenHex.harbourType = 'ore';
+								harbourOreCount--;
+								harboursCount--;
+							}
+							else if (roll <= (rollingCount+=harbourBrickCount))
+							{
+								chosenHex = hexTreeOutcome.getFirstHarbourless();
+								chosenHex.harbourType = 'brick';
+								harbourBrickCount--;
+								harboursCount--;
+							}
+							else if (roll <= (rollingCount+=harbourWoodCount))
+							{
+								chosenHex = hexTreeOutcome.getFirstHarbourless();
+								chosenHex.harbourType = 'wood';
+								harbourWoodCount--;
+								harboursCount--;
+							}
+							else if (roll <= (rollingCount+=harbourEmptyCount))
+							{
+								chosenHex = hexTreeOutcome.getFirstHarbourless();
+								chosenHex.harbourType = 'emp';
+								harbourEmptyCount--;
+							}
+							else 
+							{
+								alert('rolled over? '+roll+' '+harbourEmptyCount+' '+harboursCount);
+							}
+							if (chosenHex.harbourType != 'emp')
+							{
+								while (chosenHex.harbourPosition==null)
+								{
+									let posRoll = Math.floor((Math.random() * (6)) + 1);
+									switch (posRoll)
+									{
+										case 6:
+											if (chosenHex.northEastHex!=null&&chosenHex.northEastHex.isLand())
+											{
+												chosenHex.harbourPosition='NE';
+											}
+											break;
+										case 1:
+											if (chosenHex.northWestHex!=null&&chosenHex.northWestHex.isLand())
+											{
+												chosenHex.harbourPosition='NW';
+											}
+											break;
+										case 2:
+											if (chosenHex.westHex!=null&&chosenHex.westHex.isLand())
+											{
+												chosenHex.harbourPosition='W';
+											}
+											break;
+										case 3:
+											if (chosenHex.southWestHex!=null&&chosenHex.southWestHex.isLand())
+											{
+												chosenHex.harbourPosition='SW';
+											}
+											break;
+										case 4:
+											if (chosenHex.southEastHex!=null&&chosenHex.southEastHex.isLand())
+											{
+												chosenHex.harbourPosition='SE';
+											}
+											break;
+										case 5:
+											if (chosenHex.eastHex!=null&&chosenHex.eastHex.isLand())
+											{
+												chosenHex.harbourPosition='E';
+											}
+											break;
+										case 0:
+											alert('0!');
+											break;
+										case 7:
+											alert('7!');
+											break;
+									}
+								}
+							}
+						}
 						drawRealCan();
 						let arrayLength = hexTreeOutcome.hexes.length;
 						for (let i = 0; i < arrayLength; i++) 
@@ -2729,6 +3003,14 @@
 				<div id="token10Div"><label for="">10:</label><input type="number" min="0" value="0" id="token10" style="width: 40px;"></div>
 				<div id="token11Div"><label for="">11:</label><input type="number" min="0" value="0" id="token11" style="width: 40px;"></div>
 				<div id="token12Div"><label for="">12:</label><input type="number" min="0" value="0" id="token12" style="width: 40px;"></div>
+			</div><br>
+			<div id="harbourDiv" style="display: grid; grid-template-columns: auto auto;">
+				<div id="harbour3Div"><label for="">3:1:</label><input type="number" min="0" value="0" id="harbour3" style="width: 40px;"></div>
+				<div id="harbourWheatDiv"><label for="">Wheat:</label><input type="number" min="0" value="0" id="harbourWheat" style="width: 40px;"></div>
+				<div id="harbourBrickDiv"><label for="">Brick:</label><input type="number" min="0" value="0" id="harbourBrick" style="width: 40px;"></div>
+				<div id="harbourSheepDiv"><label for="">Sheep:</label><input type="number" min="0" value="0" id="harbourSheep" style="width: 40px;"></div>
+				<div id="harbourWoodDiv"><label for="">Wood:</label><input type="number" min="0" value="0" id="harbourWood" style="width: 40px;"></div>
+				<div id="harbourOreDiv"><label for="">Ore:</label><input type="number" min="0" value="0" id="harbourOre" style="width: 40px;"></div>
 			</div><br>
 			<p id="leftoverP"></p>
 			
